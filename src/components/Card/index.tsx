@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { CardContainer } from './Card.styles';
 
-type Props = {
-  children: string;
-};
+interface Props {
+  text: string;
+}
 
-const Card: FC<Props> = ({ children }) => {
-  return <CardContainer>{children}</CardContainer>;
+const Card: FC<Props> = ({ text }) => {
+  return <CardContainer>{text}</CardContainer>;
 };
 
 export { Card };

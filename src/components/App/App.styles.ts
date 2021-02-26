@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const AppContainer = styled.div`
   display: flex;
   align-items: flex-start;
-  background-color: #0079bf;
+  overflow-x: auto;
+  background-color: #6366f1;
   height: 100%;
   width: 100%;
   padding: 1.5rem;
