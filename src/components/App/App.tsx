@@ -1,7 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Card, List } from '../../components';
-import styles from './App.module.css';
-import { Board, Header, LogoContainer } from './App.styles';
+import { Board, Header, Logo, LogoContainer } from './App.styles';
 
 const App: FC = () => {
   useEffect(() => {
@@ -12,13 +11,12 @@ const App: FC = () => {
     <>
       <Header>
         <LogoContainer>
-          <img id='trello-logo' src='./trello-logo.gif' className={styles.logo} alt='trello-logo' />
+          <Logo id='trello-logo' src='./trello-logo.gif' alt='trello-logo' />
         </LogoContainer>
       </Header>
       <Board>
         <List title='To Do'>
           <Card text='Generate app scaffold and then' />
-          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
           <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
           <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
           <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />

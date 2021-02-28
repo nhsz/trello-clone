@@ -17,17 +17,6 @@ const CardContainer = styled.div`
 
   &:hover {
     background-color: #f1f5f9;
-
-    .card-icons {
-      display: flex;
-    }
-  }
-
-  .card-icons {
-    display: none;
-    position: absolute;
-    top: 2px;
-    right: 2px;
   }
 
   .icon {
@@ -47,6 +36,17 @@ const CardContainer = styled.div`
   }
 `;
 
+const CardIcons = styled.div`
+  display: none;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  ${CardContainer}:hover & {
+    display: flex;
+  }
+`;
+
 const TextContainer = styled.p`
   font-size: 0.95rem;
   display: inline-block;
@@ -55,4 +55,4 @@ const TextContainer = styled.p`
   overflow: hidden;
 `;
 
-export { CardContainer, TextContainer };
+export { CardContainer, TextContainer, CardIcons };

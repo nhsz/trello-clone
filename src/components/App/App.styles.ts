@@ -15,6 +15,11 @@ const Header = styled.header`
   padding-bottom: 1rem;
 `;
 
+const Logo = styled.img`
+  height: 1rem;
+  opacity: 0.5;
+`;
+
 const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -22,4 +27,4 @@ const LogoContainer = styled.div`
   padding: 0.75rem;
 `;
 
-export { Board, LogoContainer, Header };
+export { Board, Logo, LogoContainer, Header };

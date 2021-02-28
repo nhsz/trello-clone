@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { HiOutlinePlus } from 'react-icons/hi';
-import { ItemButtonContainer } from './AddItemButton.styles';
+import { AddItemParagraph, ItemButtonContainer } from './AddItemButton.styles';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   itemType: 'card' | 'list';
@@ -12,7 +12,7 @@ const AddItemButton: FC<Props> = ({ itemType }) => {
   return (
     <ItemButtonContainer itemType='card'>
       <HiOutlinePlus className='plus-sign' />
-      <p className='item-text'>{`Add another ${isCard ? 'card' : 'list'}`}</p>
+      <AddItemParagraph>{`Add another ${isCard ? 'card' : 'list'}`}</AddItemParagraph>
     </ItemButtonContainer>
   );
 };

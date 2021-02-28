@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { HiOutlinePencil } from 'react-icons/hi';
-import { CardContainer, TextContainer } from './Card.styles';
+import { CardContainer, CardIcons, TextContainer } from './Card.styles';
 
 interface Props {
   text: string;
@@ -10,9 +10,9 @@ const Card: FC<Props> = ({ text }) => {
   return (
     <CardContainer>
       <TextContainer>{text}</TextContainer>
-      <div className='card-icons'>
+      <CardIcons>
         <HiOutlinePencil className='icon' />
-      </div>
+      </CardIcons>
     </CardContainer>
   );
 };

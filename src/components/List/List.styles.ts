@@ -24,7 +24,7 @@ const ListTitle = styled.h2`
 `;
 
 const ListCards = styled.div`
-  max-height: 72vh;
+  max-height: 68vh;
   overflow-y: auto;
 `;
 
