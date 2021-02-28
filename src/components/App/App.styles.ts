@@ -7,7 +7,7 @@ const AppContainer = styled.div`
   background-color: #6366f1;
   height: 100%;
   width: 100%;
-  padding: 1.5rem;
+  padding: 1rem;
 `;
 
 export { AppContainer };

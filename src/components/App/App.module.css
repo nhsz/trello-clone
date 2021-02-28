@@ -1,0 +1,15 @@
+.header {
+  background-color: #6366f1;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: #11182714;
+  padding: 0.75rem;
+}
+
+.logo {
+  height: 1rem;
+  opacity: 0.5;
+}

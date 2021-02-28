@@ -1,3 +1,4 @@
-export { App } from './App';
-export { Card } from './Card';
-export { Column } from './Column';
+export * from './App';
+export * from './BoardTitle';
+export * from './Card';
+export * from './List';
