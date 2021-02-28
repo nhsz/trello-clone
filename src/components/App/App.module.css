@@ -1,12 +1,6 @@
 .header {
   background-color: #6366f1;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  background-color: #1118271a;
-  padding: 0.75rem;
+  padding-bottom: 1rem;
 }
 
 .logo {

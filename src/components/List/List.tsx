@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
+import { AddItemButton } from '../AddItemButton';
 import { ListCards, ListContainer, ListTitle } from './List.styles';
 
 interface Props {
@@ -10,6 +11,7 @@ const List: FC<PropsWithChildren<Props>> = ({ title, children }) => {
     <ListContainer>
       <ListTitle>{title}</ListTitle>
       <ListCards>{children}</ListCards>
+      <AddItemButton itemType='card' />
     </ListContainer>
   );
 };

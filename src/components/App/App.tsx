@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
-import { BoardTitle, Card, List } from '../../components';
+import { Card, List } from '../../components';
 import styles from './App.module.css';
-import { AppContainer } from './App.styles';
+import { Board, Header, LogoContainer } from './App.styles';
 
 const App: FC = () => {
   useEffect(() => {
@@ -10,32 +10,31 @@ const App: FC = () => {
 
   return (
     <>
-      <header className={styles.header}>
-        <div className={styles.container}>
+      <Header>
+        <LogoContainer>
           <img id='trello-logo' src='./trello-logo.gif' className={styles.logo} alt='trello-logo' />
-        </div>
-        <BoardTitle text='Enter the board title here...' />
-      </header>
-      <AppContainer>
+        </LogoContainer>
+      </Header>
+      <Board>
         <List title='To Do'>
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
-          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
+          <Card text='Generate app scaffold and then... Solve other minor details. This is just random stuff to test list scroll.' />
         </List>
         <List title='In Progress'>
-          <Card text='Learn Typescript' />
+          <Card text='Code Trello clone' />
         </List>
         <List title='Done'>
-          <Card text='Begin to use static typing' />
+          <Card text='Setup and general layout' />
         </List>
-      </AppContainer>
+      </Board>
     </>
   );
 };

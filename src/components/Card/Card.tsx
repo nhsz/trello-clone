@@ -12,7 +12,6 @@ const Card: FC<Props> = ({ text }) => {
       <TextContainer>{text}</TextContainer>
       <div className='card-icons'>
         <HiOutlinePencil className='icon' />
-        {/* <HiOutlineTrash className='icon' /> */}
       </div>
     </CardContainer>
   );

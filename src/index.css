@@ -11,9 +11,8 @@ body,
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,27 +21,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-[contenteditable] {
-  outline: 0px solid transparent;
-}
-
-/* Works on Firefox
+/* Custom scrollbar styling */
+/* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: blue orange;
+  scrollbar-color: rgba(9, 30, 66, 0.08) rgba(9, 30, 66, 0.12);
 }
 
 /* Works on Chrome, Edge, and Safari */
-/* *::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 8px;
-} */
+}
 
-/* *::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: rgba(9, 30, 66, 0.08);
   border-radius: 20px;
-} */
+}
 
-/* *::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: rgba(9, 30, 66, 0.12);
   border-radius: 20px;
-} */
+}
