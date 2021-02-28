@@ -8,7 +8,8 @@ const CardContainer = styled.div`
   cursor: pointer;
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
-  max-width: 300px;
+  min-width: 264px;
+  max-width: 284px;
   border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 
@@ -31,15 +32,10 @@ const CardContainer = styled.div`
     font-size: 28px;
     color: #94a3b8;
     padding: 6px;
-    margin-right: 0.2rem;
     border-radius: 4px;
     cursor: pointer;
     background-color: #f1f5f9cc;
     z-index: 1;
-
-    &:last-of-type {
-      margin-right: 0;
-    }
 
     &:hover {
       color: #64748b;

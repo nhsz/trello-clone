@@ -19,6 +19,15 @@ const App: FC = () => {
       <AppContainer>
         <List title='To Do'>
           <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
+          <Card text='Generate app scaffold and then... I just dont know what to do with myself' />
         </List>
         <List title='In Progress'>
           <Card text='Learn Typescript' />

@@ -25,3 +25,24 @@ code {
 [contenteditable] {
   outline: 0px solid transparent;
 }
+
+/* Works on Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+/* *::-webkit-scrollbar {
+  width: 8px;
+} */
+
+/* *::-webkit-scrollbar-track {
+  background: rgba(9, 30, 66, 0.08);
+  border-radius: 20px;
+} */
+
+/* *::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 30, 66, 0.12);
+  border-radius: 20px;
+} */

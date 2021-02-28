@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import { ListContainer, ListTitle } from './List.styles';
+import { ListCards, ListContainer, ListTitle } from './List.styles';
 
 interface Props {
   title: string;
@@ -8,8 +8,8 @@ interface Props {
 const List: FC<PropsWithChildren<Props>> = ({ title, children }) => {
   return (
     <ListContainer>
-      <ListTitle contentEditable='true'>{title}</ListTitle>
-      {children}
+      <ListTitle>{title}</ListTitle>
+      <ListCards>{children}</ListCards>
     </ListContainer>
   );
 };
