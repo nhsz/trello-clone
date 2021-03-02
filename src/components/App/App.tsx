@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { Card, List } from '../../components';
+import { AddNewItem, Card, List } from '../../components';
 import { Board, Header, Logo, LogoContainer } from './App.styles';
 
 const App: FC = () => {
@@ -32,6 +32,7 @@ const App: FC = () => {
         <List title='Done'>
           <Card text='Setup and general layout' />
         </List>
+        <AddNewItem itemType='list' handleAdd={console.log} />
       </Board>
     </>
   );
