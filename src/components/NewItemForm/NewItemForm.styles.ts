@@ -13,8 +13,6 @@ const NewItemFormContainer = styled.div<Props>`
   background-color: ${({ itemType }) => (itemType === 'list' ? '#e2e8f0' : null)};
   border-radius: ${({ itemType }) => (itemType === 'list' ? '4px' : null)};
   padding: ${({ itemType }) => (itemType === 'list' ? '0.5rem' : null)};
-
-  transition: all 3s ease-out;
 `;
 
 const NewItemButton = styled.button`
@@ -34,13 +32,18 @@ const NewItemButton = styled.button`
   }
 `;
 
-const NewItemInput = styled.input`
+const NewItemInput = styled.textarea<Props>`
   border-radius: 4px;
   border: none;
-  box-shadow: #091e4240 0px 1px 0px 0px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
-  width: calc(100% - 4px);
+  margin-left: 0.2px;
+  padding: 0.5rem;
+  width: ${({ itemType }) => (itemType === 'list' ? '262px' : '274px')};
+  height: ${({ itemType }) => (itemType === 'list' ? '2rem' : '4rem')};
+  white-space: ${({ itemType }) => (itemType === 'list' ? 'nowrap' : null)};
+  overflow: hidden;
+  resize: none;
 `;
 
 const NewItemButtonContainer = styled.div`

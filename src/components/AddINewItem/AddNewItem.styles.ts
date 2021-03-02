@@ -7,7 +7,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const ItemButtonContainer = styled.button<Props>`
   display: flex;
   align-items: center;
-  min-width: 278px;
+  min-width: ${({ itemType }) => (itemType === 'card' ? '274px' : '278px')};
   max-width: 100%;
   margin-right: 0.25rem;
   font-size: 0.95rem;
