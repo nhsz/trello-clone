@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, KeyboardEvent, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useFocus } from '../../hooks';
 import {
@@ -18,6 +18,14 @@ const NewItemForm: FC<Props> = ({ handleAdd, itemType, handleClose }) => {
   const [text, setText] = useState('');
   const inputRef = useFocus();
 
+  const handleEnterPress = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter') handleAdd(text);
+  };
+
+  const handleEsc = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Escape') handleClose();
+  };
+
   return (
     <NewItemFormContainer itemType={itemType}>
       <NewItemInput
@@ -26,6 +34,8 @@ const NewItemForm: FC<Props> = ({ handleAdd, itemType, handleClose }) => {
         value={text}
         placeholder={itemType === 'card' ? 'Enter a title for this card...' : 'Enter list title...'}
         onChange={e => setText(e.target.value)}
+        onKeyPress={handleEnterPress}
+        onKeyDown={handleEsc}
       />
       <NewItemButtonContainer>
         <NewItemButton onClick={() => handleAdd(text)}>{`Add ${

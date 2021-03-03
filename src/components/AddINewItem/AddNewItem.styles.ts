@@ -20,7 +20,7 @@ const ItemButtonContainer = styled.button<Props>`
   transition: background 84ms ease-in;
 
   .plus-sign {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   }
 
   &:hover {

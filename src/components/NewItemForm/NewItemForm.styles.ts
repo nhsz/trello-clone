@@ -37,7 +37,7 @@ const NewItemInput = styled.textarea<Props>`
   border: none;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   margin-bottom: 0.5rem;
-  margin-left: 0.2px;
+  margin-left: 0.45px;
   padding: 0.5rem;
   width: ${({ itemType }) => (itemType === 'list' ? '262px' : '274px')};
   height: ${({ itemType }) => (itemType === 'list' ? '2rem' : '4rem')};
@@ -53,7 +53,7 @@ const NewItemButtonContainer = styled.div`
   .x-sign {
     cursor: pointer;
     color: #64748b;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 
     &:hover {
       color: #475569;
