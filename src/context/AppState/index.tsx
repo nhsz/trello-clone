@@ -2,12 +2,12 @@ import { createContext, PropsWithChildren } from 'react';
 import { AppState, data } from './data';
 
 interface Props {
-  state: AppState;
+  data: AppState;
 }
 
 const AppStateContext = createContext<Props>({} as Props);
 const AppStateProvider = ({ children }: PropsWithChildren<{}>) => {
-  return <AppStateContext.Provider value={{ state: data }}>{children}</AppStateContext.Provider>;
+  return <AppStateContext.Provider value={{ data }}>{children}</AppStateContext.Provider>;
 };
 
-export { AppStateProvider };
+export { AppStateContext, AppStateProvider };
