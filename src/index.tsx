@@ -1,12 +1,15 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './components';
+import { AppStateProvider } from './context';
 import './index.css';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <StrictMode>
-    <App />
+    <AppStateProvider>
+      <App />
+    </AppStateProvider>
   </StrictMode>,
   document.getElementById('root')
 );

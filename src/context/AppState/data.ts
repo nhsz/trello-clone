@@ -1,17 +1,17 @@
-type Task = {
+interface Task {
   id: string;
   text: string;
-};
+}
 
-type List = {
+interface List {
   id: string;
   title: string;
   tasks: Task[];
-};
+}
 
-export type AppState = {
+export interface AppState {
   lists: List[];
-};
+}
 
 const data: AppState = {
   lists: [
