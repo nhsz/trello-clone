@@ -4,4 +4,11 @@
 
 - TypeScript
 - React w/Hooks
-- Styled Components + CSS Modules
+- State management: hooks (`useState`, `useReducer`) + Context API
+- Styled Components
+
+## How to run this project locally
+
+1. clone the repo
+2. `npm i`
+3. `npm start`
