@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { HiOutlinePlus } from 'react-icons/hi';
-import { NewItemForm } from '../NewItemForm';
 import { ItemButtonContainer } from './AddNewItem.styles';
+import { NewItemForm } from './NewItemForm';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   itemType: 'card' | 'list';

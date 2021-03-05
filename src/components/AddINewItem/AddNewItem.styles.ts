@@ -8,7 +8,6 @@ const ItemButtonContainer = styled.button<Props>`
   display: flex;
   align-items: center;
   min-width: ${({ itemType }) => (itemType === 'card' ? '274px' : '278px')};
-  max-width: 100%;
   margin-right: 0.25rem;
   font-size: 0.95rem;
   padding: ${({ itemType }) => (itemType === 'card' ? '0.3rem 0.5rem' : '0.75rem')};

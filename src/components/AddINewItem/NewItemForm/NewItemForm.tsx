@@ -1,6 +1,6 @@
 import { FC, KeyboardEvent, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
-import { useFocus } from '../../hooks';
+import { useFocus } from '../../../hooks';
 import {
   NewItemButton,
   NewItemButtonContainer,

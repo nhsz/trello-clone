@@ -14,6 +14,7 @@ const App: FC = () => {
           <Logo id='trello-logo' src='./trello-logo.gif' alt='trello-logo' />
         </LogoContainer>
       </Header>
+
       <Board>
         <List title='To Do'>
           <Card text='Generate app scaffold and then' />

@@ -9,7 +9,6 @@ const NewItemFormContainer = styled.div<Props>`
   flex-direction: column;
   align-items: flex-start;
   min-width: 278px;
-  max-width: 100%;
   background-color: ${({ itemType }) => (itemType === 'list' ? '#e2e8f0' : null)};
   border-radius: ${({ itemType }) => (itemType === 'list' ? '4px' : null)};
   padding: ${({ itemType }) => (itemType === 'list' ? '0.5rem' : null)};
