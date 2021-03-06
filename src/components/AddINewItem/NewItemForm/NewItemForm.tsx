@@ -17,9 +17,16 @@ interface Props {
 const NewItemForm: FC<Props> = ({ handleAdd, itemType, handleClose }) => {
   const [text, setText] = useState('');
   const inputRef = useFocus();
+  const hasContent = text.trim().length > 0;
 
   const handleEnterPress = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter') handleAdd(text);
+    if (event.key === 'Enter') {
+      if (hasContent) {
+        handleAdd(text.trim());
+      } else {
+        event.preventDefault();
+      }
+    }
   };
 
   const handleEsc = (event: KeyboardEvent<HTMLTextAreaElement>) => {
