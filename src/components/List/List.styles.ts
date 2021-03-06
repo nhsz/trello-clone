@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 const ListContainer = styled.div`
   background-color: #e2e8f0;
-  width: 296px;
+  width: 288px;
   min-height: 3rem;
   margin-right: 0.5rem;
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 0.5rem;
   padding-right: 10px;
   flex-grow: 0;

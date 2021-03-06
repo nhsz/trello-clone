@@ -8,7 +8,7 @@ const NewItemFormContainer = styled.div<Props>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 278px;
+  min-width: 270px;
   background-color: ${({ itemType }) => (itemType === 'list' ? '#e2e8f0' : null)};
   border-radius: ${({ itemType }) => (itemType === 'list' ? '4px' : null)};
   padding: ${({ itemType }) => (itemType === 'list' ? '0.5rem' : null)};
@@ -18,7 +18,7 @@ const NewItemButton = styled.button`
   cursor: pointer;
   font-size: 0.9rem;
   background-color: #5aac44;
-  border-radius: 4px;
+  border-radius: 3px;
   border: none;
   box-shadow: none;
   color: #f8fafc;
@@ -32,13 +32,13 @@ const NewItemButton = styled.button`
 `;
 
 const NewItemInput = styled.textarea<Props>`
-  border-radius: 4px;
+  border-radius: 3px;
   border: none;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   margin-bottom: 0.5rem;
   margin-left: 0.45px;
   padding: 0.5rem;
-  width: ${({ itemType }) => (itemType === 'list' ? '262px' : '274px')};
+  width: ${({ itemType }) => (itemType === 'list' ? '262px' : '266px')};
   height: ${({ itemType }) => (itemType === 'list' ? '2rem' : '4rem')};
   white-space: ${({ itemType }) => (itemType === 'list' ? 'nowrap' : null)};
   overflow: hidden;

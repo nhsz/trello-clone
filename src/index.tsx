@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './components';
-import { AppStateProvider } from './context';
+import { AppStateProvider } from './contexts';
 import './index.css';
 // import reportWebVitals from './reportWebVitals';
 

@@ -9,9 +9,9 @@ const CardContainer = styled.div`
   margin-bottom: 0.5rem;
   margin-right: 0.25rem;
   padding: 0.5rem;
-  min-width: 264px;
-  max-width: 288px;
-  border-radius: 4px;
+  min-width: 256px;
+  max-width: 280px;
+  border-radius: 3px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   transition: background 84ms ease-in;
 
@@ -23,7 +23,7 @@ const CardContainer = styled.div`
     font-size: 28px;
     color: #94a3b8;
     padding: 6px;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
     background-color: #f1f5f9cc;
     z-index: 1;
