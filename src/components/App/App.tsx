@@ -23,7 +23,7 @@ const App: FC = () => {
         {lists.map(({ id, title, tasks }, i) => (
           <List id={id} title={title} key={id}>
             {tasks.map(({ id, text }) => (
-              <Card text={text} key={id} />
+              <Card id={id} text={text} key={id} />
             ))}
           </List>
         ))}

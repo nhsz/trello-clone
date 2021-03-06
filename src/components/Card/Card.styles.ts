@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const CardContainer = styled.div`
   display: flex;
-  position: relative;
   justify-content: space-between;
   background-color: #f8fafc;
   cursor: pointer;
@@ -14,6 +13,8 @@ const CardContainer = styled.div`
   border-radius: 3px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   transition: background 84ms ease-in;
+  position: relative;
+  z-index: 1;
 
   &:hover {
     background-color: #f1f5f9;

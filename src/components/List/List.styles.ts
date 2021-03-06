@@ -10,6 +10,8 @@ const ListContainer = styled.div`
   padding-right: 10px;
   flex-grow: 0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 0;
 `;
 
 const ListTitle = styled.h2`
@@ -19,7 +21,7 @@ const ListTitle = styled.h2`
   width: 278px;
   overflow: hidden;
   cursor: pointer;
-  padding: 8px 16px 12px;
+  padding: 8px 8px 12px;
   font-size: 1rem;
   font-weight: 600;
 `;

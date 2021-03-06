@@ -1,21 +1,22 @@
 import { FC, KeyboardEvent, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
-import { useFocus } from '../../../hooks';
+import { useFocus } from '../../hooks';
 import {
-  NewItemButton,
-  NewItemButtonContainer,
-  NewItemFormContainer,
-  NewItemInput
-} from './NewItemForm.styles';
+  EditItemButton,
+  EditItemButtonContainer,
+  EditItemFormContainer,
+  EditItemInput
+} from './EditItemForm.styles';
 
 interface Props {
   itemType: 'card' | 'list';
+  initialText: string;
   handleAdd: (text: string) => void;
   handleClose: () => void;
 }
 
-const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
-  const [text, setText] = useState('');
+const EditItemForm: FC<Props> = ({ itemType, initialText, handleAdd, handleClose }) => {
+  const [text, setText] = useState(initialText);
   const inputRef = useFocus();
   const hasContent = text.trim().length > 0;
 
@@ -34,8 +35,8 @@ const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
   };
 
   return (
-    <NewItemFormContainer itemType={itemType}>
-      <NewItemInput
+    <EditItemFormContainer itemType={itemType}>
+      <EditItemInput
         itemType={itemType}
         ref={inputRef}
         value={text}
@@ -45,16 +46,12 @@ const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
         onKeyDown={handleEsc}
       />
 
-      <NewItemButtonContainer>
-        <NewItemButton
-          onClick={() => {
-            if (hasContent) handleAdd(text);
-          }}
-        >{`Add ${itemType === 'card' ? 'Card' : 'List'}`}</NewItemButton>
+      <EditItemButtonContainer>
+        <EditItemButton onClick={() => handleAdd(text)}>Save</EditItemButton>
         <HiOutlineX className='x-sign' onClick={handleClose} />
-      </NewItemButtonContainer>
-    </NewItemFormContainer>
+      </EditItemButtonContainer>
+    </EditItemFormContainer>
   );
 };
 
-export { NewItemForm };
+export { EditItemForm };
