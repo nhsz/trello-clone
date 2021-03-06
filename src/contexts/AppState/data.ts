@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 interface Task {
   id: string;
   text: string;
@@ -16,19 +18,19 @@ export interface AppState {
 const data: AppState = {
   lists: [
     {
-      id: '0',
+      id: nanoid(),
       title: 'To Do',
-      tasks: [{ id: 'c0', text: 'Learn JavaScript/TypeScript' }]
+      tasks: [{ id: nanoid(), text: 'Learn JavaScript/TypeScript' }]
     },
     {
-      id: '1',
+      id: nanoid(),
       title: 'In Progress',
-      tasks: [{ id: 'c2', text: 'Learn React' }]
+      tasks: [{ id: nanoid(), text: 'Learn React' }]
     },
     {
-      id: '2',
+      id: nanoid(),
       title: 'Done',
-      tasks: [{ id: 'c3', text: 'Learn NextJS' }]
+      tasks: [{ id: nanoid(), text: 'Learn NextJS' }]
     }
   ]
 };

@@ -4,7 +4,8 @@ import { useAppState } from '../../hooks';
 import { Board, Header, Logo, LogoContainer } from './App.styles';
 
 const App: FC = () => {
-  const { state } = useAppState();
+  const { state, dispatch } = useAppState();
+  const { lists } = state;
 
   useEffect(() => {
     document?.getElementById('trello-logo')?.setAttribute('draggable', 'false');
@@ -19,14 +20,17 @@ const App: FC = () => {
       </Header>
 
       <Board>
-        {state.lists.map(({ id, title, tasks }, i) => (
-          <List title={title} key={id}>
+        {lists.map(({ id, title, tasks }, i) => (
+          <List id={id} title={title} key={id}>
             {tasks.map(({ id, text }) => (
               <Card text={text} key={id} />
             ))}
           </List>
         ))}
-        <AddNewItem itemType='list' handleAdd={console.log} />
+        <AddNewItem
+          itemType='list'
+          handleAdd={text => dispatch({ type: 'ADD_LIST', payload: text })}
+        />
       </Board>
     </>
   );

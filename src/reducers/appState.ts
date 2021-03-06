@@ -1,11 +1,11 @@
 import { nanoid } from 'nanoid';
 import { AppState } from '../contexts';
+import { findListIndexById, overrideListAtIndex } from '../utils';
 
 export type Action =
   | {
       type: 'ADD_TASK';
-      payload: string;
-      // payload: { text: string; listId: string };
+      payload: { text: string; listId: string };
     }
   | {
       type: 'ADD_LIST';
@@ -15,9 +15,16 @@ export type Action =
 const appStateReducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case 'ADD_TASK': {
-      // reducer logic
+      const targetListIndex = findListIndexById(state.lists, action.payload.listId);
+      const targetList = state.lists[targetListIndex];
+      const newTargetList = {
+        ...targetList,
+        tasks: [...targetList.tasks, { id: nanoid(), text: action.payload.text }]
+      };
+
       return {
-        ...state
+        ...state,
+        lists: overrideListAtIndex(state.lists, newTargetList, targetListIndex)
       };
     }
 
