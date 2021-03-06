@@ -14,7 +14,7 @@ interface Props {
   handleClose: () => void;
 }
 
-const NewItemForm: FC<Props> = ({ handleAdd, itemType, handleClose }) => {
+const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
   const [text, setText] = useState('');
   const inputRef = useFocus();
   const hasContent = text.trim().length > 0;
@@ -44,6 +44,7 @@ const NewItemForm: FC<Props> = ({ handleAdd, itemType, handleClose }) => {
         onKeyPress={handleEnterPress}
         onKeyDown={handleEsc}
       />
+
       <NewItemButtonContainer>
         <NewItemButton onClick={() => handleAdd(text)}>{`Add ${
           itemType === 'card' ? 'Card' : 'List'

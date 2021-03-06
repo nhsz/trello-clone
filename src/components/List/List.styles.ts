@@ -13,6 +13,11 @@ const ListContainer = styled.div`
 `;
 
 const ListTitle = styled.h2`
+  display: inline-block;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  width: 278px;
+  overflow: hidden;
   cursor: pointer;
   padding: 8px 16px 12px;
   font-size: 1rem;
