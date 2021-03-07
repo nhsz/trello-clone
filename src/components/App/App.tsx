@@ -1,13 +1,15 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { AddNewItem, Card, List } from '../../components';
 import { useAppState } from '../../hooks';
 import { Board, Header, Logo, LogoContainer } from './App.styles';
 
 const App: FC = () => {
+  const [documentIsReady, setDocumentIsReady] = useState(false);
   const { state, dispatch } = useAppState();
   const { lists } = state;
 
   useEffect(() => {
+    setTimeout(() => setDocumentIsReady(document.readyState === 'complete'), 1300);
     document?.getElementById('trello-logo')?.setAttribute('draggable', 'false');
   }, []);
 
@@ -15,11 +17,15 @@ const App: FC = () => {
     <>
       <Header>
         <LogoContainer>
-          <Logo id='trello-logo' src='./trello-logo.gif' alt='trello-logo' />
+          <Logo
+            id='trello-logo'
+            src={documentIsReady ? './trello-logo.gif' : './trello-logo-loading.gif'}
+            alt='trello-logo'
+          />
         </LogoContainer>
       </Header>
 
-      <Board>
+      <Board id='board'>
         {lists.map(({ id, title, tasks }, i) => (
           <List id={id} title={title} key={id}>
             {tasks.map(({ id, text }) => (

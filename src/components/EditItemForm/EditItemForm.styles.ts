@@ -8,14 +8,14 @@ const EditItemFormContainer = styled.div<Props>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 270px;
-  background-color: #00000099;
+  min-width: 260px;
+  background-color: transparent;
   border-radius: ${({ itemType }) => (itemType === 'list' ? '4px' : null)};
   padding: ${({ itemType }) => (itemType === 'list' ? '0.5rem' : null)};
+
   position: absolute;
-  z-index: 2;
-  top: 49.5px;
-  left: 7.5px;
+  top: -41px;
+  left: 0px;
 `;
 
 const EditItemButton = styled.button`
@@ -42,8 +42,8 @@ const EditItemInput = styled.textarea<Props>`
   margin-bottom: 0.5rem;
   margin-left: 0.45px;
   padding: 0.5rem;
-  width: ${({ itemType }) => (itemType === 'list' ? '262px' : '266px')};
-  height: ${({ itemType }) => (itemType === 'list' ? '2rem' : '4rem')};
+  width: ${({ itemType }) => (itemType === 'list' ? '260px' : '264px')};
+  height: 4.75rem;
   white-space: ${({ itemType }) => (itemType === 'list' ? 'nowrap' : null)};
   overflow: hidden;
   resize: none;
@@ -55,11 +55,11 @@ const EditItemButtonContainer = styled.div`
 
   .x-sign {
     cursor: pointer;
-    color: #64748b;
+    color: #e2e8f0b3;
     font-size: 1.5rem;
 
     &:hover {
-      color: #475569;
+      color: #e2e8f0;
     }
   }
 `;

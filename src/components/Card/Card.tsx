@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { HiOutlinePencil } from 'react-icons/hi';
+import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
 import { EditItemForm } from '../EditItemForm';
 import { CardContainer, CardIcons, TextContainer } from './Card.styles';
 
@@ -33,16 +33,40 @@ const Card: FC<Props> = ({ id, text }) => {
   const handleClose = () => setEditMode(false);
 
   return (
-    <>
+    <div style={{ position: 'relative' }}>
       <CardContainer>
         <TextContainer>{text}</TextContainer>
         <CardIcons>
           <HiOutlinePencil className='icon' onClick={handleEdit} />
+          <HiOutlineTrash className='icon' />
         </CardIcons>
       </CardContainer>
 
       {editMode && (
-        <div ref={wrapperRef}>
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            backgroundColor: '#000000a6',
+            position: 'fixed',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 99
+          }}
+        ></div>
+      )}
+
+      {editMode && (
+        <div
+          ref={wrapperRef}
+          style={{
+            height: 0,
+            zIndex: 999,
+            position: 'fixed'
+          }}
+        >
           <EditItemForm
             itemType='card'
             initialText={text}
@@ -51,7 +75,7 @@ const Card: FC<Props> = ({ id, text }) => {
           />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
