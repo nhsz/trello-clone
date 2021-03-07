@@ -5,7 +5,7 @@ interface Task {
   text: string;
 }
 
-interface List {
+export interface List {
   id: string;
   title: string;
   tasks: Task[];
@@ -21,7 +21,6 @@ const data: AppState = {
       id: nanoid(),
       title: 'To Do',
       tasks: [
-        { id: nanoid(), text: 'Remove card' },
         { id: nanoid(), text: 'Remove list' },
         { id: nanoid(), text: 'Edit list title' },
         { id: nanoid(), text: 'Move card' }
@@ -36,6 +35,7 @@ const data: AppState = {
       id: nanoid(),
       title: 'Done',
       tasks: [
+        { id: nanoid(), text: 'Remove card' },
         { id: nanoid(), text: 'Add card' },
         { id: nanoid(), text: 'Add list' }
       ]

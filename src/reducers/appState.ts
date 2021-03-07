@@ -10,6 +10,10 @@ export type Action =
   | {
       type: 'ADD_LIST';
       payload: string;
+    }
+  | {
+      type: 'REMOVE_TASK';
+      payload: { taskId: string; listId: string };
     };
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
@@ -38,6 +42,20 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
             tasks: []
           }
         ]
+      };
+    }
+
+    case 'REMOVE_TASK': {
+      const targetListIndex = findListIndexById(state.lists, action.payload.listId);
+      const targetList = state.lists[targetListIndex];
+      const newTargetList = {
+        ...targetList,
+        tasks: targetList.tasks.filter(task => task.id !== action.payload.taskId)
+      };
+
+      return {
+        ...state,
+        lists: overrideListAtIndex(state.lists, newTargetList, targetListIndex)
       };
     }
 

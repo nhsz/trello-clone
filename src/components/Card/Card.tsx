@@ -1,5 +1,7 @@
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
+import { useAppState } from '../../hooks';
+import { findTaskList } from '../../utils';
 import { EditItemForm } from '../EditItemForm';
 import { CardContainer, CardIcons, TextContainer } from './Card.styles';
 
@@ -10,6 +12,7 @@ interface Props {
 
 const Card: FC<Props> = ({ id, text }) => {
   const [editMode, setEditMode] = useState(false);
+  const { state, dispatch } = useAppState();
   const wrapperRef = useRef(null);
 
   const clickOutsideListener = useCallback(
@@ -22,15 +25,18 @@ const Card: FC<Props> = ({ id, text }) => {
   );
 
   useEffect(() => {
-    // Attach the listeners on component mount.
+    // attach listener on component mount
     document.addEventListener('click', clickOutsideListener);
-
-    // Detach the listeners on component unmount.
+    // detach listener on component unmount
     return () => document.removeEventListener('click', clickOutsideListener);
   });
 
   const handleEdit = () => setEditMode(true);
   const handleClose = () => setEditMode(false);
+  const handleRemove = (taskId: string) => {
+    const listId = findTaskList(state.lists, taskId);
+    dispatch({ type: 'REMOVE_TASK', payload: { taskId, listId } });
+  };
 
   return (
     <div style={{ position: 'relative' }}>
@@ -38,7 +44,7 @@ const Card: FC<Props> = ({ id, text }) => {
         <TextContainer>{text}</TextContainer>
         <CardIcons>
           <HiOutlinePencil className='icon' onClick={handleEdit} />
-          <HiOutlineTrash className='icon' />
+          <HiOutlineTrash className='icon' onClick={() => handleRemove(id)} />
         </CardIcons>
       </CardContainer>
 
