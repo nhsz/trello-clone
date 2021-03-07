@@ -35,7 +35,10 @@ const App: FC = () => {
         ))}
         <AddNewItem
           itemType='list'
-          handleAdd={text => dispatch({ type: 'ADD_LIST', payload: text })}
+          handleAdd={text => {
+            dispatch({ type: 'ADD_LIST', payload: text });
+            console.log(state.lists);
+          }}
         />
       </Board>
     </>

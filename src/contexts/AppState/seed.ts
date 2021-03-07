@@ -23,7 +23,8 @@ const data: AppState = {
       tasks: [
         { id: nanoid(), text: 'Remove list' },
         { id: nanoid(), text: 'Edit list title' },
-        { id: nanoid(), text: 'Move card' }
+        { id: nanoid(), text: 'Move card' },
+        { id: nanoid(), text: 'Save on localStorage' }
       ]
     },
     {

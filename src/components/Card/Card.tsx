@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
 import { useAppState } from '../../hooks';
-import { findTaskList } from '../../utils';
 import { EditItemForm } from '../EditItemForm';
 import { CardContainer, CardIcons, TextContainer } from './Card.styles';
 
@@ -12,7 +11,7 @@ interface Props {
 
 const Card: FC<Props> = ({ id, text }) => {
   const [editMode, setEditMode] = useState(false);
-  const { state, dispatch } = useAppState();
+  const { dispatch } = useAppState();
   const wrapperRef = useRef(null);
 
   const clickOutsideListener = useCallback(
@@ -33,10 +32,7 @@ const Card: FC<Props> = ({ id, text }) => {
 
   const handleEdit = () => setEditMode(true);
   const handleClose = () => setEditMode(false);
-  const handleRemove = (taskId: string) => {
-    const listId = findTaskList(state.lists, taskId);
-    dispatch({ type: 'REMOVE_TASK', payload: { taskId, listId } });
-  };
+  const handleRemove = (taskId: string) => dispatch({ type: 'REMOVE_TASK', payload: taskId });
 
   return (
     <div style={{ position: 'relative' }}>

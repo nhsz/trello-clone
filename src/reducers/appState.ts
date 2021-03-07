@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { AppState } from '../contexts';
-import { findListIndexById, overrideListAtIndex } from '../utils';
+import { findListIndexById, findTaskList, overrideListAtIndex } from '../utils';
 
 export type Action =
   | {
@@ -12,18 +12,23 @@ export type Action =
       payload: string;
     }
   | {
+      type: 'EDIT_TASK';
+      payload: { taskId: string; listId: string; text: string };
+    }
+  | {
       type: 'REMOVE_TASK';
-      payload: { taskId: string; listId: string };
+      payload: string;
     };
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case 'ADD_TASK': {
-      const targetListIndex = findListIndexById(state.lists, action.payload.listId);
+      const { listId, text } = action.payload;
+      const targetListIndex = findListIndexById(state.lists, listId);
       const targetList = state.lists[targetListIndex];
       const newTargetList = {
         ...targetList,
-        tasks: [...targetList.tasks, { id: nanoid(), text: action.payload.text }]
+        tasks: [...targetList.tasks, { id: nanoid(), text }]
       };
 
       return {
@@ -45,17 +50,49 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       };
     }
 
-    case 'REMOVE_TASK': {
-      const targetListIndex = findListIndexById(state.lists, action.payload.listId);
+    case 'EDIT_TASK': {
+      const { taskId, listId, text } = action.payload;
+      const targetListIndex = findListIndexById(state.lists, listId);
       const targetList = state.lists[targetListIndex];
       const newTargetList = {
         ...targetList,
-        tasks: targetList.tasks.filter(task => task.id !== action.payload.taskId)
+        tasks: targetList.tasks.map(task => {
+          if (task.id === taskId) {
+            return {
+              ...task,
+              text
+            };
+          } else {
+            return task;
+          }
+        })
       };
 
       return {
         ...state,
         lists: overrideListAtIndex(state.lists, newTargetList, targetListIndex)
+      };
+    }
+
+    case 'REMOVE_TASK': {
+      const { lists } = state;
+      const taskId = action.payload;
+      const listId = findTaskList(lists, taskId);
+
+      console.log({ listId });
+
+      const targetListIndex = findListIndexById(lists, listId);
+      console.log({ targetListIndex });
+
+      const targetList = lists[targetListIndex];
+      const newTargetList = {
+        ...targetList,
+        tasks: targetList.tasks.filter(task => task.id !== taskId)
+      };
+
+      return {
+        ...state,
+        lists: overrideListAtIndex(lists, newTargetList, targetListIndex)
       };
     }
 
