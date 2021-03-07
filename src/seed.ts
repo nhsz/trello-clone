@@ -25,14 +25,17 @@ const data: AppState = {
         { id: nanoid(), text: 'Move card' },
         { id: nanoid(), text: 'Move list' },
         { id: nanoid(), text: 'Save on localStorage' },
-        { id: nanoid(), text: 'Add Dark Mode' },
+        { id: nanoid(), text: 'Add Dark/Light Mode switch' },
         { id: nanoid(), text: 'Fix CSS bugs' }
       ]
     },
     {
       id: nanoid(),
       title: 'In Progress',
-      tasks: [{ id: nanoid(), text: 'Remove list' }]
+      tasks: [
+        { id: nanoid(), text: 'List Actions menu' },
+        { id: nanoid(), text: 'Remove list' }
+      ]
     },
     {
       id: nanoid(),
