@@ -21,21 +21,24 @@ const data: AppState = {
       id: nanoid(),
       title: 'To Do',
       tasks: [
-        { id: nanoid(), text: 'Remove list' },
         { id: nanoid(), text: 'Edit list title' },
         { id: nanoid(), text: 'Move card' },
-        { id: nanoid(), text: 'Save on localStorage' }
+        { id: nanoid(), text: 'Move list' },
+        { id: nanoid(), text: 'Save on localStorage' },
+        { id: nanoid(), text: 'Add Dark Mode' },
+        { id: nanoid(), text: 'Fix CSS bugs' }
       ]
     },
     {
       id: nanoid(),
       title: 'In Progress',
-      tasks: [{ id: nanoid(), text: 'Edit card' }]
+      tasks: [{ id: nanoid(), text: 'Remove list' }]
     },
     {
       id: nanoid(),
       title: 'Done',
       tasks: [
+        { id: nanoid(), text: 'Edit card' },
         { id: nanoid(), text: 'Remove card' },
         { id: nanoid(), text: 'Add card' },
         { id: nanoid(), text: 'Add list' }

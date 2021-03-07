@@ -9,7 +9,7 @@ interface Props {
   text: string;
 }
 
-const Card: FC<Props> = ({ id, text }) => {
+const Card: FC<Props> = ({ id: taskId, text }) => {
   const [editMode, setEditMode] = useState(false);
   const { dispatch } = useAppState();
   const wrapperRef = useRef(null);
@@ -24,7 +24,7 @@ const Card: FC<Props> = ({ id, text }) => {
   );
 
   useEffect(() => {
-    // attach listener on component mount
+    // attach listener on component mount to detect clicks outside edit form area
     document.addEventListener('click', clickOutsideListener);
     // detach listener on component unmount
     return () => document.removeEventListener('click', clickOutsideListener);
@@ -40,7 +40,7 @@ const Card: FC<Props> = ({ id, text }) => {
         <TextContainer>{text}</TextContainer>
         <CardIcons>
           <HiOutlinePencil className='icon' onClick={handleEdit} />
-          <HiOutlineTrash className='icon' onClick={() => handleRemove(id)} />
+          <HiOutlineTrash className='icon' onClick={() => handleRemove(taskId)} />
         </CardIcons>
       </CardContainer>
 
@@ -72,7 +72,7 @@ const Card: FC<Props> = ({ id, text }) => {
           <EditItemForm
             itemType='card'
             initialText={text}
-            handleAdd={() => {}}
+            handleAdd={text => dispatch({ type: 'EDIT_TASK', payload: { taskId, text } })}
             handleClose={handleClose}
           />
         </div>

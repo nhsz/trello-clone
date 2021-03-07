@@ -8,7 +8,6 @@ const Board = styled.div`
   background-color: #6366f1;
   height: calc(100vh - 56px);
   padding: 1rem;
-
   position: relative;
 `;
 

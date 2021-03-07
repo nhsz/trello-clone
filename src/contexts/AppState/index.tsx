@@ -1,6 +1,6 @@
 import { createContext, Dispatch, PropsWithChildren, useMemo, useReducer } from 'react';
 import { Action, appStateReducer } from '../../reducers';
-import { AppState, data as initialState } from './seed';
+import { AppState, data as initialState } from '../../seed';
 
 interface Props {
   state: AppState;
@@ -15,5 +15,5 @@ const AppStateProvider = ({ children }: PropsWithChildren<{}>) => {
   return <AppStateContext.Provider value={providerValue}>{children}</AppStateContext.Provider>;
 };
 
-export * from './seed';
+export * from '../../seed';
 export { AppStateContext, AppStateProvider };

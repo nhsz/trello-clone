@@ -8,7 +8,7 @@ interface Props {
   title: string;
 }
 
-const List: FC<PropsWithChildren<Props>> = ({ id, title, children }) => {
+const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children }) => {
   const { dispatch } = useAppState();
 
   return (
@@ -17,7 +17,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, children }) => {
       <ListCards>{children}</ListCards>
       <AddNewItem
         itemType='card'
-        handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { text, listId: id } })}
+        handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { text, listId } })}
       />
     </ListContainer>
   );

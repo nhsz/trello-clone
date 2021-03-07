@@ -24,6 +24,7 @@ const EditItemForm: FC<Props> = ({ itemType, initialText, handleAdd, handleClose
     if (event.key === 'Enter') {
       if (hasContent) {
         handleAdd(text.trim());
+        handleClose();
       } else {
         event.preventDefault();
       }
@@ -32,6 +33,11 @@ const EditItemForm: FC<Props> = ({ itemType, initialText, handleAdd, handleClose
 
   const handleEsc = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Escape') handleClose();
+  };
+
+  const handleSaveAndClose = () => {
+    handleAdd(text);
+    handleClose();
   };
 
   return (
@@ -47,7 +53,7 @@ const EditItemForm: FC<Props> = ({ itemType, initialText, handleAdd, handleClose
       />
 
       <EditItemButtonContainer>
-        <EditItemButton onClick={() => handleAdd(text)}>Save</EditItemButton>
+        <EditItemButton onClick={handleSaveAndClose}>Save</EditItemButton>
         <HiOutlineX className='x-sign' onClick={handleClose} />
       </EditItemButtonContainer>
     </EditItemFormContainer>

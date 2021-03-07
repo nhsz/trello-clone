@@ -13,7 +13,7 @@ export type Action =
     }
   | {
       type: 'EDIT_TASK';
-      payload: { taskId: string; listId: string; text: string };
+      payload: { taskId: string; text: string };
     }
   | {
       type: 'REMOVE_TASK';
@@ -51,7 +51,8 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
     }
 
     case 'EDIT_TASK': {
-      const { taskId, listId, text } = action.payload;
+      const { taskId, text } = action.payload;
+      const listId = findTaskList(state.lists, taskId);
       const targetListIndex = findListIndexById(state.lists, listId);
       const targetList = state.lists[targetListIndex];
       const newTargetList = {
@@ -78,12 +79,7 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       const { lists } = state;
       const taskId = action.payload;
       const listId = findTaskList(lists, taskId);
-
-      console.log({ listId });
-
       const targetListIndex = findListIndexById(lists, listId);
-      console.log({ targetListIndex });
-
       const targetList = lists[targetListIndex];
       const newTargetList = {
         ...targetList,
