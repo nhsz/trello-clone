@@ -18,6 +18,10 @@ export type Action =
   | {
       type: 'REMOVE_TASK';
       payload: string;
+    }
+  | {
+      type: 'REMOVE_LIST';
+      payload: string;
     };
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
@@ -89,6 +93,14 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         lists: overrideListAtIndex(lists, newTargetList, targetListIndex)
+      };
+    }
+
+    case 'REMOVE_LIST': {
+      const listId = action.payload;
+
+      return {
+        lists: state.lists.filter(list => list.id !== listId)
       };
     }
 
