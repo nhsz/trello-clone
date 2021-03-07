@@ -1,6 +1,6 @@
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
-import { useAppState } from '../../hooks';
+import { useAppState, useClickOutside } from '../../hooks';
 import { EditItemForm } from '../EditItemForm';
 import { CardContainer, CardIcons, TextContainer } from './Card.styles';
 
@@ -13,15 +13,20 @@ const Card: FC<Props> = ({ id: taskId, text }) => {
   const [editMode, setEditMode] = useState(false);
   const { dispatch } = useAppState();
   const wrapperRef = useRef(null);
+  const clickOutsideListener = useClickOutside({
+    mode: editMode,
+    setMode: setEditMode,
+    ref: wrapperRef
+  });
 
-  const clickOutsideListener = useCallback(
-    (e: MouseEvent) => {
-      if (editMode && !(wrapperRef.current as any)?.contains(e.target as Node)) {
-        setEditMode(false);
-      }
-    },
-    [editMode]
-  );
+  // const clickOutsideListener = useCallback(
+  //   (e: MouseEvent) => {
+  //     if (editMode && !(wrapperRef.current as any)?.contains(e.target as Node)) {
+  //       setEditMode(false);
+  //     }
+  //   },
+  //   [editMode]
+  // );
 
   useEffect(() => {
     // attach listener on component mount to detect clicks outside edit form area
