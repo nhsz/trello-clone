@@ -30,7 +30,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children }) => 
         <ListTitle>{title}</ListTitle>
         <ListActionsButton onClick={showMenu}>
           <HiOutlineDotsHorizontal className='dots-icon' />
-          {showListActionsMenu && <ListActionsMenu>List Actions Menu</ListActionsMenu>}
+          {showListActionsMenu && <ListActionsMenu>no lo implementé todavía LOL</ListActionsMenu>}
         </ListActionsButton>
       </ListTitleContainer>
       <ListCards>{children}</ListCards>

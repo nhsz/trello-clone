@@ -1,3 +1,3 @@
 export * from './useAppState';
-export * from './useClickOutside';
+export * from './useClickOutsideRef';
 export * from './useFocus';
