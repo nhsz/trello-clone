@@ -10,7 +10,6 @@ interface Props {
 const AppStateContext = createContext<Props>({} as Props);
 const AppStateProvider = ({ children }: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(appStateReducer, initialState);
-  // const providerValue = useMemo(() => ({ state, dispatch }), [state]);
 
   return (
     <AppStateContext.Provider value={{ state, dispatch }}>{children}</AppStateContext.Provider>

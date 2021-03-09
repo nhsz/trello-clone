@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from 'react';
+import { FiCoffee } from 'react-icons/fi';
 import { AddNewItem, Card, List } from '../../components';
 import { useAppState } from '../../hooks';
-import { Board, Header, Logo, LogoContainer } from './App.styles';
+import { Board, Footer, Header, Logo, LogoContainer } from './App.styles';
 
 const App: FC = () => {
   const [documentIsReady, setDocumentIsReady] = useState(false);
@@ -38,6 +39,18 @@ const App: FC = () => {
           handleAdd={text => dispatch({ type: 'ADD_LIST', payload: text })}
         />
       </Board>
+      <Footer>
+        <p>
+          built with <FiCoffee className='coffee-icon' /> by{' '}
+          <a href='https://twitter.com/_nhsz'>
+            <code>nhsz</code>
+          </a>{' '}
+          |{' '}
+          <a href='#'>
+            <code>&lt;/src code&gt;</code>
+          </a>
+        </p>
+      </Footer>
     </>
   );
 };
