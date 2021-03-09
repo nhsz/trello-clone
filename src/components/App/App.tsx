@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import { FiCoffee } from 'react-icons/fi';
 import { AddNewItem, Card, List } from '../../components';
 import { useAppState } from '../../hooks';
-import { Board, Footer, Header, Logo, LogoContainer } from './App.styles';
+import { Footer, Header } from '../UI';
+import { Board } from './App.styles';
 
 const App: FC = () => {
   const [documentIsReady, setDocumentIsReady] = useState(false);
@@ -16,15 +16,7 @@ const App: FC = () => {
 
   return (
     <>
-      <Header>
-        <LogoContainer>
-          <Logo
-            id='trello-logo'
-            src={documentIsReady ? './trello-logo.gif' : './trello-logo-loading.gif'}
-            alt='trello-logo'
-          />
-        </LogoContainer>
-      </Header>
+      <Header logoSrc={documentIsReady ? './trello-logo.gif' : './trello-logo-loading.gif'} />
 
       <Board id='board'>
         {lists.map(({ id, title, tasks }, i) => (
@@ -39,18 +31,8 @@ const App: FC = () => {
           handleAdd={text => dispatch({ type: 'ADD_LIST', payload: text })}
         />
       </Board>
-      <Footer>
-        <p>
-          built with <FiCoffee className='coffee-icon' /> by{' '}
-          <a href='https://twitter.com/_nhsz'>
-            <code>nhsz</code>
-          </a>{' '}
-          |{' '}
-          <a href='#'>
-            <code>&lt;/src code&gt;</code>
-          </a>
-        </p>
-      </Footer>
+
+      <Footer siteUrl='https://twitter.com/_nhsz' repoUrl='#' />
     </>
   );
 };
