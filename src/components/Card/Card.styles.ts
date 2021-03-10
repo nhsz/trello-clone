@@ -23,6 +23,7 @@ const CardContainer = styled.div`
     font-size: 28px;
     color: #94a3b8;
     padding: 6px;
+    margin-right: 4px;
     border-radius: 3px;
     cursor: pointer;
     background-color: #f1f5f9cc;
@@ -32,6 +33,10 @@ const CardContainer = styled.div`
     &:hover {
       color: #64748b;
       background-color: #e2e8f0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
     }
   }
 `;

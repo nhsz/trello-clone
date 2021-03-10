@@ -10,7 +10,7 @@ const useClickOutsideRef = ({ mode, setMode }: Props) => {
 
   const clickOutsideListener = useCallback(
     (e: MouseEvent) => {
-      if (mode && !(ref.current as any).contains(e.target as Node)) {
+      if (mode && !(ref.current as any)?.contains(e.target as Node)) {
         setMode();
       }
     },

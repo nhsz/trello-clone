@@ -67,9 +67,9 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
               ...task,
               text
             };
-          } else {
-            return task;
           }
+
+          return task;
         })
       };
 

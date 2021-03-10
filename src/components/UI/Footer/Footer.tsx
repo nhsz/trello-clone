@@ -11,11 +11,11 @@ const Footer: FC<PropsWithChildren<Props>> = ({ siteUrl, repoUrl }) => (
   <FooterContainer>
     <p>
       built with <FiCoffee className='coffee-icon' /> by{' '}
-      <a href={siteUrl}>
+      <a href={siteUrl} target='_blank' rel='noopener noreferrer'>
         <code>nhsz</code>
       </a>{' '}
       |{' '}
-      <a href={repoUrl}>
+      <a href={repoUrl} target='_blank' rel='noopener noreferrer'>
         <code>&lt;/src code&gt;</code>
       </a>
     </p>
