@@ -12,18 +12,14 @@ const AddNewItem: FC<Props> = ({ itemType, handleAdd }) => {
   const [showForm, setShowForm] = useState(false);
 
   const handleClick = () => setShowForm(true);
+  const handleClose = () => setShowForm(false);
+  const handleAddItem = (text: string) => {
+    handleAdd(text);
+    setShowForm(false);
+  };
 
   if (showForm) {
-    return (
-      <NewItemForm
-        itemType={itemType}
-        handleAdd={text => {
-          handleAdd(text);
-          setShowForm(false);
-        }}
-        handleClose={() => setShowForm(false)}
-      />
-    );
+    return <NewItemForm itemType={itemType} handleAdd={handleAddItem} handleClose={handleClose} />;
   }
 
   return (

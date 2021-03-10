@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { AppState } from '../contexts';
-import { findListIndexById, findTaskList, overrideListAtIndex } from '../utils';
+import { findListIndexById, findTaskList, moveItem, overrideListAtIndex } from '../utils';
 
 export type Action =
   | {
@@ -22,6 +22,13 @@ export type Action =
   | {
       type: 'REMOVE_LIST';
       payload: string;
+    }
+  | {
+      type: 'MOVE_LIST';
+      payload: {
+        dragIndex: number;
+        hoverIndex: number;
+      };
     };
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
@@ -101,6 +108,16 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
 
       return {
         lists: state.lists.filter(list => list.id !== listId)
+      };
+    }
+
+    case 'MOVE_LIST': {
+      const { lists } = state;
+      const { dragIndex, hoverIndex } = action.payload;
+
+      return {
+        ...state,
+        lists: moveItem(lists, dragIndex, hoverIndex)
       };
     }
 

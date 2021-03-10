@@ -18,6 +18,7 @@ const Card: FC<Props> = ({ id: taskId, text }) => {
   });
 
   const handleEdit = () => setEditMode(true);
+  const handleClick = () => handleRemove(taskId);
   const handleClose = () => setEditMode(false);
   const handleRemove = (taskId: string) => dispatch({ type: 'REMOVE_TASK', payload: taskId });
 
@@ -27,7 +28,7 @@ const Card: FC<Props> = ({ id: taskId, text }) => {
         <TextContainer>{text}</TextContainer>
         <CardIcons>
           <HiOutlinePencil className='icon' onClick={handleEdit} />
-          <HiOutlineTrash className='icon' onClick={() => handleRemove(taskId)} />
+          <HiOutlineTrash className='icon' onClick={handleClick} />
         </CardIcons>
       </CardContainer>
 

@@ -33,6 +33,10 @@ const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
     if (event.key === 'Escape') handleClose();
   };
 
+  const handleClick = () => {
+    if (hasContent) handleAdd(text);
+  };
+
   return (
     <NewItemFormContainer itemType={itemType}>
       <NewItemInput
@@ -46,11 +50,9 @@ const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
       />
 
       <NewItemButtonContainer>
-        <NewItemButton
-          onClick={() => {
-            if (hasContent) handleAdd(text);
-          }}
-        >{`Add ${itemType === 'card' ? 'Card' : 'List'}`}</NewItemButton>
+        <NewItemButton onClick={handleClick}>{`Add ${
+          itemType === 'card' ? 'Card' : 'List'
+        }`}</NewItemButton>
         <HiOutlineX className='x-sign' onClick={handleClose} />
       </NewItemButtonContainer>
     </NewItemFormContainer>
