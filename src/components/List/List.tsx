@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren, useState } from 'react';
+import { FC, PropsWithChildren, useRef, useState } from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
-import { useAppState } from '../../hooks';
+import { useAppState, useDragItem } from '../../hooks';
 import { AddNewItem } from '../AddINewItem';
 import {
   ListActionsButton,
@@ -19,13 +19,16 @@ interface Props {
 const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children }) => {
   const { dispatch } = useAppState();
   const [showListActionsMenu, setShowListActionsMenu] = useState(false);
+  const listRef = useRef<HTMLDivElement>(null);
+  const { drag } = useDragItem({ id: listId, type: 'COLUMN' });
 
   // onClick={() => dispatch({ type: 'REMOVE_LIST', payload: listId })}
-
   const showMenu = () => setShowListActionsMenu(true);
 
+  drag(listRef);
+
   return (
-    <ListContainer className='pseudo-elem'>
+    <ListContainer className='pseudo-elem' ref={listRef}>
       <ListTitleContainer>
         <ListTitle>{title}</ListTitle>
         <ListActionsButton onClick={showMenu}>
