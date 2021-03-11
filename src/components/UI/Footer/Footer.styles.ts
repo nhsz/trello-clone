@@ -15,15 +15,23 @@ const FooterContainer = styled.footer`
 
   a {
     color: #a5b4fc;
+    transition: all 0.33s ease-in;
 
     &:hover {
-      color: #c7d2fe;
+      color: #ff3c88;
+      text-shadow: 1px 1px 2px #332c49;
     }
   }
 
   .coffee-icon {
     position: relative;
     top: 1.4px;
+    fill: transparent;
+    transition: all 0.5s ease-in;
+
+    &:hover {
+      fill: #1a120d;
+    }
   }
 `;
 

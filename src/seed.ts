@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { DragItem } from './dragItem';
 
 interface Task {
   id: string;
@@ -13,6 +14,7 @@ export interface List {
 
 export interface AppState {
   lists: List[];
+  draggedItem: DragItem | undefined;
 }
 
 const data: AppState = {
@@ -47,7 +49,8 @@ const data: AppState = {
         { id: nanoid(), text: 'Add list' }
       ]
     }
-  ]
+  ],
+  draggedItem: undefined
 };
 
 export { data };
