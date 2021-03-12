@@ -3,17 +3,17 @@ import { ReactNode } from 'react';
 interface ListDragItem {
   type: 'LIST';
   id: string;
-  listIndex: number;
   text: string;
+  listIndex: number;
   children: ReactNode | null;
 }
 
 export interface CardDragItem {
   type: 'CARD';
   id: string;
-  listIndex: number;
   text: string;
-  listId: string | null;
+  listIndex: number;
+  listId: string;
 }
 
 export type DragItem = ListDragItem | CardDragItem;

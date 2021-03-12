@@ -11,17 +11,23 @@ const CustomDragLayer = () => {
     item: monitor.getItem() as DragItem
   }));
 
-  const { type, id, text } = item;
-  const listId = item.type === 'CARD' ? item.listId : null;
-  const children = item.type === 'LIST' ? item.children : null;
-
   return isDragging ? (
     <CustomDragLayerContainer>
       <div style={getItemStyles(currentOffset)}>
-        {type === 'LIST' ? (
-          <List id={id} title={text} isPreview={true} children={children} />
+        {item.type === 'LIST' ? (
+          <List
+            id={item.id}
+            title={item.text}
+            isPreview={true}
+            children={item.type === 'LIST' && item.children}
+          />
         ) : (
-          <Card id={id} text={text} listId={listId} isPreview={true} />
+          <Card
+            id={item.id}
+            text={item.text}
+            listId={String(item.type === 'CARD' && item.listId)}
+            isPreview={true}
+          />
         )}
       </div>
     </CustomDragLayerContainer>

@@ -1,44 +1,16 @@
 import { nanoid } from 'nanoid';
+import { ListAction, TaskAction } from '../actions';
 import { AppState } from '../contexts';
-import { findListIndexById, findTaskList, moveItem, overrideListAtIndex } from '../utils';
+import {
+  findListIndexById,
+  findTaskList,
+  insertItemAtIndex,
+  moveItem,
+  overrideListAtIndex,
+  removeItemAtIndex
+} from '../utils';
 
-export type Action =
-  | {
-      type: 'ADD_TASK';
-      payload: { listId: string; text: string };
-    }
-  | {
-      type: 'ADD_LIST';
-      payload: string;
-    }
-  | {
-      type: 'EDIT_TASK';
-      payload: { taskId: string; text: string };
-    }
-  | {
-      type: 'REMOVE_TASK';
-      payload: string;
-    }
-  | {
-      type: 'REMOVE_LIST';
-      payload: string;
-    }
-  | {
-      type: 'MOVE_TASK';
-      payload: {
-        dragIndex: number;
-        hoverIndex: number;
-        sourceColumn: string;
-        targetColumn: string;
-      };
-    }
-  | {
-      type: 'MOVE_LIST';
-      payload: {
-        dragIndex: number;
-        hoverIndex: number;
-      };
-    };
+export type Action = TaskAction | ListAction;
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
@@ -119,6 +91,41 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         lists: state.lists.filter(list => list.id !== listId)
+      };
+    }
+
+    case 'MOVE_TASK': {
+      const { lists } = state;
+      const { dragIndex, hoverIndex, sourceListId, targetListId } = action.payload;
+
+      const sourceListIndex = findListIndexById(lists, sourceListId);
+      const targetListIndex = findListIndexById(lists, targetListId);
+
+      const sourceList = state.lists[sourceListIndex];
+      const task = sourceList.tasks[dragIndex];
+      const updatedSourceList = {
+        ...sourceList,
+        tasks: removeItemAtIndex(sourceList.tasks, dragIndex)
+      };
+      const stateWithUpdatedSourceList = {
+        ...state,
+        lists: overrideListAtIndex(lists, updatedSourceList, sourceListIndex)
+      };
+
+      const targetList = stateWithUpdatedSourceList.lists[targetListIndex];
+      const updatedTargetList = {
+        ...targetList,
+        tasks: insertItemAtIndex(targetList.tasks, task, hoverIndex)
+      };
+
+      return {
+        ...state,
+        ...stateWithUpdatedSourceList,
+        lists: overrideListAtIndex(
+          stateWithUpdatedSourceList.lists,
+          updatedTargetList,
+          targetListIndex
+        )
       };
     }
 

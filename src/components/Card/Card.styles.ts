@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const CardContainer = styled.div`
+interface Props {
+  isPreview?: boolean;
+}
+
+const CardContainer = styled.div<Props>`
   display: flex;
   justify-content: space-between;
   background-color: #f8fafc;
