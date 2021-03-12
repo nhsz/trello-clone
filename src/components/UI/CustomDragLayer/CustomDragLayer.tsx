@@ -14,7 +14,7 @@ const CustomDragLayer = () => {
   return isDragging ? (
     <CustomDragLayerContainer>
       <div style={getItemStyles(currentOffset)}>
-        <List id={item.id} title={item.text} isPreview={true} />
+        <List id={item.id} title={item.text} isPreview={true} children={item.children} />
       </div>
     </CustomDragLayerContainer>
   ) : null;

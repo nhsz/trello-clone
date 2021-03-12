@@ -29,7 +29,8 @@ const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children, isPre
     id: listId,
     text: title,
     index: listIndex,
-    type: 'COLUMN'
+    type: 'COLUMN',
+    children
   });
   const [, drop] = useDrop({
     accept: 'COLUMN',
