@@ -128,12 +128,12 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       };
     }
 
-    case 'SET_DRAGGED_ITEM': {
-      return {
-        ...state,
-        draggedItem: action.payload
-      };
-    }
+    // case 'SET_DRAGGED_ITEM': {
+    //   return {
+    //     ...state,
+    //     draggedItem: action.payload
+    //   };
+    // }
 
     default:
       return state;

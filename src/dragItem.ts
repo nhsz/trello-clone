@@ -1,7 +1,7 @@
 type ColumnDragItem = {
   id: string;
-  // index: number;
-  // title: string;
+  index: number;
+  text: string;
   type: 'COLUMN';
 };
 

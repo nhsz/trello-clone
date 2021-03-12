@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { AddNewItem, Card, List } from '../../components';
 import { useAppState } from '../../hooks';
-import { Footer, Header } from '../UI';
+import { CustomDragLayer, Footer, Header } from '../UI';
 import { Board } from './App.styles';
 
 const App: FC = () => {
@@ -19,6 +19,8 @@ const App: FC = () => {
       <Header logoSrc={documentIsReady ? './trello-logo.gif' : './trello-logo-loading.gif'} />
 
       <Board id='board'>
+        <CustomDragLayer />
+
         {lists.map(({ id, title, tasks }, i) => (
           <List id={id} title={title} key={id}>
             {tasks.map(({ id, text }) => (

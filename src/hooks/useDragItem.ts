@@ -1,19 +1,25 @@
 import { useDrag } from 'react-dnd';
 import { DragItem } from '../dragItem';
-import { useAppState } from './useAppState';
 
 const useDragItem = (item: DragItem) => {
-  const { dispatch } = useAppState();
+  // const { dispatch } = useAppState();
   const { type } = item;
 
-  const [, drag] = useDrag(() => ({
+  const [{ opacity }, drag] = useDrag(() => ({
     type,
     item,
-    begin: () => dispatch({ type: 'SET_DRAGGED_ITEM', payload: item }),
-    end: () => dispatch({ type: 'SET_DRAGGED_ITEM', payload: undefined })
+    collect: monitor => ({
+      opacity: monitor.isDragging() ? 0 : 1
+    })
+    // begin: () => {
+    //   console.log('begin!');
+
+    //   dispatch({ type: 'SET_DRAGGED_ITEM', payload: item });
+    // },
+    // end: () => dispatch({ type: 'SET_DRAGGED_ITEM', payload: undefined })
   }));
 
-  return { drag };
+  return { opacity, drag };
 };
 
 export { useDragItem };

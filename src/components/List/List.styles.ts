@@ -22,7 +22,7 @@ const ListTitleContainer = styled.div`
   font-size: 0.95rem;
   padding: 6px 7px 14px;
   cursor: pointer;
-  background-color: #e2e8f040;
+  /* background-color: #e2e8f040; */
 `;
 
 const ListActionsButton = styled.button`
