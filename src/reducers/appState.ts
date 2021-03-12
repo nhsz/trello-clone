@@ -1,12 +1,11 @@
 import { nanoid } from 'nanoid';
 import { AppState } from '../contexts';
-import { DragItem } from '../dragItem';
 import { findListIndexById, findTaskList, moveItem, overrideListAtIndex } from '../utils';
 
 export type Action =
   | {
       type: 'ADD_TASK';
-      payload: { text: string; listId: string };
+      payload: { listId: string; text: string };
     }
   | {
       type: 'ADD_LIST';
@@ -25,15 +24,20 @@ export type Action =
       payload: string;
     }
   | {
+      type: 'MOVE_TASK';
+      payload: {
+        dragIndex: number;
+        hoverIndex: number;
+        sourceColumn: string;
+        targetColumn: string;
+      };
+    }
+  | {
       type: 'MOVE_LIST';
       payload: {
         dragIndex: number;
         hoverIndex: number;
       };
-    }
-  | {
-      type: 'SET_DRAGGED_ITEM';
-      payload: DragItem | undefined;
     };
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
@@ -127,13 +131,6 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
         lists: moveItem(lists, dragIndex, hoverIndex)
       };
     }
-
-    // case 'SET_DRAGGED_ITEM': {
-    //   return {
-    //     ...state,
-    //     draggedItem: action.payload
-    //   };
-    // }
 
     default:
       return state;

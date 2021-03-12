@@ -26,22 +26,22 @@ const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children, isPre
   const listRef = useRef<HTMLDivElement>(null);
   const listIndex = findListIndexById(state.lists, listId);
   const { opacity, drag } = useDragItem({
+    type: 'LIST',
     id: listId,
+    listIndex,
     text: title,
-    index: listIndex,
-    type: 'COLUMN',
     children
   });
   const [, drop] = useDrop({
-    accept: 'COLUMN',
+    accept: 'LIST',
     hover(item: DragItem) {
-      const dragIndex = item.index;
+      const dragIndex = item.listIndex;
       const hoverIndex = listIndex;
 
       if (dragIndex === hoverIndex) return;
 
       dispatch({ type: 'MOVE_LIST', payload: { dragIndex, hoverIndex } });
-      item.index = hoverIndex;
+      item.listIndex = hoverIndex;
     }
   });
 
@@ -49,8 +49,6 @@ const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children, isPre
 
   // onClick={() => dispatch({ type: 'REMOVE_LIST', payload: listId })}
   const showMenu = () => setShowListActionsMenu(true);
-
-  console.log({ isPreview });
 
   return (
     <ListContainer
@@ -67,7 +65,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children, isPre
       <ListCards>{children}</ListCards>
       <AddNewItem
         itemType='card'
-        handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { text, listId } })}
+        handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { listId, text } })}
       />
     </ListContainer>
   );

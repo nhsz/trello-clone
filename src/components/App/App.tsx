@@ -21,10 +21,10 @@ const App: FC = () => {
       <Board id='board'>
         <CustomDragLayer />
 
-        {lists.map(({ id, title, tasks }, i) => (
-          <List id={id} title={title} key={id}>
-            {tasks.map(({ id, text }) => (
-              <Card id={id} text={text} key={id} />
+        {lists.map(({ id: listId, title, tasks }, i) => (
+          <List id={listId} title={title} key={listId}>
+            {tasks.map(({ id: cardId, text }) => (
+              <Card id={cardId} text={text} key={cardId} listId={listId} />
             ))}
           </List>
         ))}

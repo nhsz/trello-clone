@@ -1,11 +1,19 @@
 import { ReactNode } from 'react';
 
-type ListDragItem = {
+interface ListDragItem {
+  type: 'LIST';
   id: string;
-  index: number;
+  listIndex: number;
   text: string;
-  type: 'COLUMN';
   children: ReactNode | null;
-};
+}
 
-export type DragItem = ListDragItem;
+export interface CardDragItem {
+  type: 'CARD';
+  id: string;
+  listIndex: number;
+  text: string;
+  listId: string | null;
+}
+
+export type DragItem = ListDragItem | CardDragItem;

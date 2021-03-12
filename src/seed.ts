@@ -24,8 +24,6 @@ const data: AppState = {
       title: 'To Do',
       tasks: [
         { id: nanoid(), text: 'Edit list title' },
-        { id: nanoid(), text: 'Move card' },
-        { id: nanoid(), text: 'Move list' },
         { id: nanoid(), text: 'Save on localStorage' },
         { id: nanoid(), text: 'Add Dark/Light Mode switch' },
         { id: nanoid(), text: 'Fix CSS bugs' }
@@ -35,6 +33,7 @@ const data: AppState = {
       id: nanoid(),
       title: 'In Progress',
       tasks: [
+        { id: nanoid(), text: 'Move card' },
         { id: nanoid(), text: 'List Actions menu' },
         { id: nanoid(), text: 'Remove list' }
       ]
@@ -43,6 +42,7 @@ const data: AppState = {
       id: nanoid(),
       title: 'Done',
       tasks: [
+        { id: nanoid(), text: 'Move list' },
         { id: nanoid(), text: 'Edit card' },
         { id: nanoid(), text: 'Remove card' },
         { id: nanoid(), text: 'Add card' },
