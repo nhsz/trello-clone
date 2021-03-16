@@ -17,31 +17,57 @@ import {
 interface Props {
   id: string;
   title: string;
+  index: number;
   isPreview?: boolean;
 }
 
-const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children, isPreview }) => {
+const List: FC<PropsWithChildren<Props>> = ({ id, title, index, children, isPreview }) => {
   const { state, dispatch } = useAppState();
   const [showListActionsMenu, setShowListActionsMenu] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
-  const listIndex = findListIndexById(state.lists, listId);
+
+  const listIndex = findListIndexById(state.lists, id);
+
   const { opacity, drag } = useDragItem({
     type: 'LIST',
-    id: listId,
-    listIndex,
+    id,
+    index,
     text: title,
     children
   });
   const [, drop] = useDrop({
-    accept: 'LIST',
+    accept: ['LIST', 'CARD'],
     hover(item: DragItem) {
-      const dragIndex = item.listIndex;
-      const hoverIndex = listIndex;
+      if (item.type === 'LIST') {
+        const dragIndex = item.index;
+        const hoverIndex = index;
 
-      if (dragIndex === hoverIndex) return;
+        if (dragIndex === hoverIndex) {
+          return;
+        }
 
-      dispatch({ type: 'MOVE_LIST', payload: { dragIndex, hoverIndex } });
-      item.listIndex = hoverIndex;
+        dispatch({ type: 'MOVE_LIST', payload: { dragIndex, hoverIndex } });
+        item.index = hoverIndex;
+      }
+
+      // else {
+      //   const dragIndex = item.index;
+      //   const hoverIndex = 0;
+      //   const sourceListId = item.listId;
+      //   const targetListId = listId;
+
+      //   if (sourceListId === targetListId) {
+      //     return;
+      //   }
+
+      //   dispatch({
+      //     type: 'MOVE_TASK',
+      //     payload: { dragIndex, hoverIndex, sourceListId, targetListId }
+      //   });
+
+      //   item.index = hoverIndex;
+      //   item.listId = targetListId;
+      // }
     }
   });
 
@@ -65,7 +91,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id: listId, title, children, isPre
       <ListCards>{children}</ListCards>
       <AddNewItem
         itemType='card'
-        handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { listId, text } })}
+        handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { id, text } })}
       />
     </ListContainer>
   );

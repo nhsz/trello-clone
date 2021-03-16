@@ -1,11 +1,11 @@
 export type TaskAction =
   | {
       type: 'ADD_TASK';
-      payload: { listId: string; text: string };
+      payload: { id: string; text: string };
     }
   | {
       type: 'EDIT_TASK';
-      payload: { taskId: string; text: string };
+      payload: { id: string; text: string };
     }
   | {
       type: 'REMOVE_TASK';

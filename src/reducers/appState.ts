@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { ListAction, TaskAction } from '../actions';
 import { AppState } from '../contexts';
+import { DragItem } from '../dragItem';
 import {
   findListIndexById,
   findTaskList,
@@ -10,13 +11,19 @@ import {
   removeItemAtIndex
 } from '../utils';
 
-export type Action = TaskAction | ListAction;
+export type Action =
+  | TaskAction
+  | ListAction
+  | {
+      type: 'SET_DRAGGED_ITEM';
+      payload: DragItem | undefined;
+    };
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case 'ADD_TASK': {
-      const { listId, text } = action.payload;
-      const targetListIndex = findListIndexById(state.lists, listId);
+      const { id, text } = action.payload;
+      const targetListIndex = findListIndexById(state.lists, id);
       const targetList = state.lists[targetListIndex];
       const newTargetList = {
         ...targetList,
@@ -44,14 +51,14 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
     }
 
     case 'EDIT_TASK': {
-      const { taskId, text } = action.payload;
-      const listId = findTaskList(state.lists, taskId);
+      const { id, text } = action.payload;
+      const listId = findTaskList(state.lists, id);
       const targetListIndex = findListIndexById(state.lists, listId);
       const targetList = state.lists[targetListIndex];
       const newTargetList = {
         ...targetList,
         tasks: targetList.tasks.map(task => {
-          if (task.id === taskId) {
+          if (task.id === id) {
             return {
               ...task,
               text
@@ -101,8 +108,9 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       const sourceListIndex = findListIndexById(lists, sourceListId);
       const targetListIndex = findListIndexById(lists, targetListId);
 
-      const sourceList = state.lists[sourceListIndex];
+      const sourceList = lists[sourceListIndex];
       const task = sourceList.tasks[dragIndex];
+
       const updatedSourceList = {
         ...sourceList,
         tasks: removeItemAtIndex(sourceList.tasks, dragIndex)
@@ -119,7 +127,6 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       };
 
       return {
-        ...state,
         ...stateWithUpdatedSourceList,
         lists: overrideListAtIndex(
           stateWithUpdatedSourceList.lists,
@@ -136,6 +143,13 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         lists: moveItem(lists, dragIndex, hoverIndex)
+      };
+    }
+
+    case 'SET_DRAGGED_ITEM': {
+      return {
+        ...state,
+        draggedItem: action.payload
       };
     }
 

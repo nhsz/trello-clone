@@ -22,9 +22,9 @@ const App: FC = () => {
         <CustomDragLayer />
 
         {lists.map(({ id: listId, title, tasks }, i) => (
-          <List id={listId} title={title} key={listId}>
-            {tasks.map(({ id: cardId, text }) => (
-              <Card id={cardId} text={text} key={cardId} listId={listId} />
+          <List id={listId} index={i} title={title} key={listId}>
+            {tasks.map(({ id: cardId, text }, j) => (
+              <Card id={cardId} index={j} text={text} key={cardId} listId={listId} />
             ))}
           </List>
         ))}

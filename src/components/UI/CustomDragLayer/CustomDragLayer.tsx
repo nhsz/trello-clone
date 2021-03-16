@@ -18,16 +18,12 @@ const CustomDragLayer = () => {
           <List
             id={item.id}
             title={item.text}
+            index={item.index}
             isPreview={true}
-            children={item.type === 'LIST' && item.children}
+            children={item.children}
           />
         ) : (
-          <Card
-            id={item.id}
-            text={item.text}
-            listId={String(item.type === 'CARD' && item.listId)}
-            isPreview={true}
-          />
+          <Card id={item.id} text={item.text} index={0} listId={item.listId} isPreview={true} />
         )}
       </div>
     </CustomDragLayerContainer>

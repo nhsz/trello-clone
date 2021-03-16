@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
-interface ListDragItem {
+export interface ListDragItem {
   type: 'LIST';
   id: string;
   text: string;
-  listIndex: number;
+  index: number;
   children: ReactNode | null;
 }
 
@@ -12,7 +12,7 @@ export interface CardDragItem {
   type: 'CARD';
   id: string;
   text: string;
-  listIndex: number;
+  index: number;
   listId: string;
 }
 
