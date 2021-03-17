@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface Props {
+export interface FormProps {
   itemType: 'card' | 'list';
 }
 
-const NewItemFormContainer = styled.div<Props>`
+const NewItemFormContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -31,7 +31,7 @@ const NewItemButton = styled.button`
   }
 `;
 
-const NewItemInput = styled.textarea<Props>`
+const NewItemInput = styled.textarea<FormProps>`
   border-radius: 3px;
   border: none;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);

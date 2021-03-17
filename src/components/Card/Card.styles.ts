@@ -61,7 +61,7 @@ const TextContainer = styled.p`
   overflow: hidden;
 `;
 
-const Overlay = styled.div`
+const BackgroundOverlay = styled.div`
   height: 100%;
   width: 100%;
   background-color: #000000a6;
@@ -73,4 +73,21 @@ const Overlay = styled.div`
   z-index: 99;
 `;
 
-export { CardContainer, TextContainer, CardIcons, Overlay };
+const WrapperContainer = styled.div`
+  height: 0;
+  z-index: 999;
+  position: fixed;
+`;
+
+const OuterContainer = styled.div`
+  position: relative;
+`;
+
+export {
+  CardContainer,
+  TextContainer,
+  CardIcons,
+  BackgroundOverlay,
+  WrapperContainer,
+  OuterContainer
+};

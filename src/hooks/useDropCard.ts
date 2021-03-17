@@ -13,18 +13,14 @@ const useDropCard = ({ id, index, listId }: Params) => {
   const [, drop] = useDrop({
     accept: 'CARD',
     hover(item: CardDragItem) {
-      if (item.id === id) {
-        return;
-      }
+      if (item.id === id) return;
 
       const dragIndex = item.index;
       const hoverIndex = index;
       const sourceListId = item.listId;
       const targetListId = listId;
 
-      if (dragIndex === hoverIndex) {
-        return;
-      }
+      if (dragIndex === hoverIndex) return;
 
       dispatch({
         type: 'MOVE_TASK',

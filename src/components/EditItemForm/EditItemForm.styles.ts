@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import {
+  FormProps,
+  NewItemButton,
+  NewItemButtonContainer,
+  NewItemInput
+} from '../AddINewItem/NewItemForm/NewItemForm.styles';
 
-interface Props {
-  itemType: 'card' | 'list';
-}
-
-const EditItemFormContainer = styled.div<Props>`
+const EditItemFormContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -12,51 +14,21 @@ const EditItemFormContainer = styled.div<Props>`
   background-color: transparent;
   border-radius: ${({ itemType }) => (itemType === 'list' ? '4px' : null)};
   padding: ${({ itemType }) => (itemType === 'list' ? '0.5rem' : null)};
-
   position: absolute;
   top: -41px;
   left: 0px;
 `;
 
-const EditItemButton = styled.button`
-  cursor: pointer;
-  font-size: 0.9rem;
-  background-color: #5aac44;
-  border-radius: 3px;
-  border: none;
-  box-shadow: none;
-  color: #f8fafc;
-  padding: 8px 12px;
-  text-align: center;
-  margin-right: 0.5rem;
+const EditItemButton = styled(NewItemButton)``;
 
-  &:hover {
-    background-color: #61bd4f;
-  }
-`;
-
-const EditItemInput = styled.textarea<Props>`
-  border-radius: 3px;
-  border: none;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  margin-bottom: 0.5rem;
-  margin-left: 0.45px;
-  padding: 0.5rem;
+const EditItemInput = styled(NewItemInput)`
   width: ${({ itemType }) => (itemType === 'list' ? '260px' : '264px')};
   height: 4.75rem;
-  white-space: ${({ itemType }) => (itemType === 'list' ? 'nowrap' : null)};
-  overflow: hidden;
-  resize: none;
 `;
 
-const EditItemButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-
+const EditItemButtonContainer = styled(NewItemButtonContainer)`
   .x-sign {
-    cursor: pointer;
     color: #e2e8f0b3;
-    font-size: 1.5rem;
 
     &:hover {
       color: #e2e8f0;

@@ -16,9 +16,7 @@ const useDropList = ({ id, index }: Params) => {
         const dragIndex = item.index;
         const hoverIndex = index;
 
-        if (dragIndex === hoverIndex) {
-          return;
-        }
+        if (dragIndex === hoverIndex) return;
 
         dispatch({
           type: 'MOVE_LIST',
@@ -32,9 +30,7 @@ const useDropList = ({ id, index }: Params) => {
         const sourceListId = item.listId;
         const targetListId = id;
 
-        if (sourceListId === targetListId) {
-          return;
-        }
+        if (sourceListId === targetListId) return;
 
         dispatch({
           type: 'MOVE_TASK',

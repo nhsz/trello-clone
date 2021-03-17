@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import { XYCoord } from 'react-dnd';
 
-type Coordinates = XYCoord | null;
+export type Coordinates = XYCoord | null;
 
 const getItemStyles = (currentOffset: Coordinates): CSSProperties => {
   if (!currentOffset) {

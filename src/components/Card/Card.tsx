@@ -3,7 +3,14 @@ import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
 import { useAppState, useClickOutsideRef, useDragItem, useDropCard } from '../../hooks';
 import { isHidden } from '../../utils';
 import { EditItemForm } from '../EditItemForm';
-import { CardContainer, CardIcons, Overlay, TextContainer } from './Card.styles';
+import {
+  BackgroundOverlay,
+  CardContainer,
+  CardIcons,
+  OuterContainer,
+  TextContainer,
+  WrapperContainer
+} from './Card.styles';
 
 interface Props {
   id: string;
@@ -34,7 +41,7 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
   const handleRemove = (id: string) => dispatch({ type: 'REMOVE_TASK', payload: id });
 
   return (
-    <div style={{ position: 'relative' }}>
+    <OuterContainer>
       <CardContainer
         isHidden={isHidden({ isPreview, draggedItem, itemType: 'CARD', id })}
         isPreview={isPreview}
@@ -47,26 +54,18 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
         </CardIcons>
       </CardContainer>
 
-      {editMode && <Overlay />}
-
+      {editMode && <BackgroundOverlay />}
       {editMode && (
-        <div
-          ref={wrapperRef}
-          style={{
-            height: 0,
-            zIndex: 999,
-            position: 'fixed'
-          }}
-        >
+        <WrapperContainer ref={wrapperRef}>
           <EditItemForm
             itemType='card'
             initialText={text}
             handleAdd={text => dispatch({ type: 'EDIT_TASK', payload: { id, text } })}
             handleClose={handleClose}
           />
-        </div>
+        </WrapperContainer>
       )}
-    </div>
+    </OuterContainer>
   );
 };
 
