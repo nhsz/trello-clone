@@ -110,7 +110,7 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       };
       const stateWithUpdatedSourceList = {
         ...state,
-        lists: overrideListAtIndex(lists, updatedSourceList, sourceListIndex)
+        lists: overrideListAtIndex(state.lists, updatedSourceList, sourceListIndex)
       };
 
       const targetList = stateWithUpdatedSourceList.lists[targetListIndex];

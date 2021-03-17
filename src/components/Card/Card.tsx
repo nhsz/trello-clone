@@ -38,6 +38,10 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
       const sourceListId = item.listId;
       const targetListId = listId;
 
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+
       dispatch({
         type: 'MOVE_TASK',
         payload: { dragIndex, hoverIndex, sourceListId, targetListId }

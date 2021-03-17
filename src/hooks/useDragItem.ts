@@ -6,20 +6,15 @@ import { useAppState } from '../hooks';
 
 const useDragItem = (item: DragItem) => {
   const { dispatch } = useAppState();
-  const { type } = item;
-  const setDraggedItem = (item?: DragItem) => {
-    dispatch({ type: 'SET_DRAGGED_ITEM', payload: item });
-  };
-
-  const [, drag, preview] = useDrag(() => ({
-    type,
-    item: () => {
-      setDraggedItem(item);
-      return item;
-    },
-    end: () => setDraggedItem(undefined)
-  }));
-
+  const [, drag, preview] = useDrag({
+    item,
+    begin: () =>
+      dispatch({
+        type: 'SET_DRAGGED_ITEM',
+        payload: item
+      }),
+    end: () => dispatch({ type: 'SET_DRAGGED_ITEM', payload: undefined })
+  });
   useEffect(() => {
     preview(getEmptyImage(), { captureDraggingState: true });
   }, [preview]);
