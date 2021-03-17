@@ -16,7 +16,7 @@ const ItemButtonContainer = styled.button<Props>`
   border-radius: 3px;
   color: ${({ itemType }) => (itemType === 'card' ? '#64748b' : '#f8fafc')};
   background-color: ${({ itemType }) => (itemType === 'card' ? '#e2e8f0' : '#e2e8f040')};
-  transition: background 84ms ease-in;
+  // transition: background 84ms ease-in;
 
   .plus-sign {
     font-size: 1.3rem;

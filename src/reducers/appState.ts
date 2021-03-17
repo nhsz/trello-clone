@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
-import { ListAction, TaskAction } from '../actions';
+import { DragAction, ListAction, TaskAction } from '../actions';
 import { AppState } from '../contexts';
-import { DragItem } from '../dragItem';
 import {
   findListIndexById,
   findTaskList,
@@ -11,13 +10,7 @@ import {
   removeItemAtIndex
 } from '../utils';
 
-export type Action =
-  | TaskAction
-  | ListAction
-  | {
-      type: 'SET_DRAGGED_ITEM';
-      payload: DragItem | undefined;
-    };
+export type Action = TaskAction | ListAction | DragAction;
 
 const appStateReducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {

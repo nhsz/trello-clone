@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { AddNewItem, Card, List } from '../../components';
+import { AddNewItem, List } from '../../components';
 import { useAppState } from '../../hooks';
 import { CustomDragLayer, Footer, Header } from '../UI';
 import { Board } from './App.styles';
@@ -22,11 +22,7 @@ const App: FC = () => {
         <CustomDragLayer />
 
         {lists.map(({ id: listId, title, tasks }, i) => (
-          <List id={listId} index={i} title={title} key={listId}>
-            {tasks.map(({ id: cardId, text }, j) => (
-              <Card id={cardId} index={j} text={text} key={cardId} listId={listId} />
-            ))}
-          </List>
+          <List id={listId} index={i} title={title} key={listId} />
         ))}
         <AddNewItem
           itemType='list'

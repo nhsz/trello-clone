@@ -7,26 +7,24 @@ import { useAppState } from '../hooks';
 const useDragItem = (item: DragItem) => {
   const { dispatch } = useAppState();
   const { type } = item;
-  const setDraggedItem = (item?: DragItem) => () =>
+  const setDraggedItem = (item?: DragItem) => {
     dispatch({ type: 'SET_DRAGGED_ITEM', payload: item });
+  };
 
-  const [{ opacity }, drag, preview] = useDrag(() => ({
+  const [, drag, preview] = useDrag(() => ({
     type,
     item: () => {
       setDraggedItem(item);
       return item;
     },
-    collect: monitor => ({
-      opacity: monitor.isDragging() ? 0 : 1
-    }),
-    end: setDraggedItem()
+    end: () => setDraggedItem(undefined)
   }));
 
   useEffect(() => {
     preview(getEmptyImage(), { captureDraggingState: true });
   }, [preview]);
 
-  return { opacity, drag };
+  return { drag };
 };
 
 export { useDragItem };

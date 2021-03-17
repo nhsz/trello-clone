@@ -15,13 +15,7 @@ const CustomDragLayer = () => {
     <CustomDragLayerContainer>
       <div style={getItemStyles(currentOffset)}>
         {item.type === 'LIST' ? (
-          <List
-            id={item.id}
-            title={item.text}
-            index={item.index}
-            isPreview={true}
-            children={item.children}
-          />
+          <List id={item.id} title={item.title} index={item.index} isPreview={true} />
         ) : (
           <Card id={item.id} text={item.text} index={0} listId={item.listId} isPreview={true} />
         )}

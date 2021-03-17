@@ -1,10 +1,7 @@
 import styled from 'styled-components';
+import { DragPreviewContainer } from '../List/List.styles';
 
-interface Props {
-  isPreview?: boolean;
-}
-
-const CardContainer = styled.div<Props>`
+const CardContainer = styled(DragPreviewContainer)`
   display: flex;
   justify-content: space-between;
   background-color: #f8fafc;
@@ -16,7 +13,7 @@ const CardContainer = styled.div<Props>`
   max-width: 280px;
   border-radius: 3px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  transition: background 84ms ease-in;
+  // transition: background 84ms ease-in;
   position: relative;
 
   &:hover {
@@ -32,7 +29,7 @@ const CardContainer = styled.div<Props>`
     cursor: pointer;
     background-color: #f1f5f9cc;
     z-index: 1;
-    transition: all 84ms ease-in;
+    // transition: all 84ms ease-in;
 
     &:hover {
       color: #64748b;

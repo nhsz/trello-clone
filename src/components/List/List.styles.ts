@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
-const ListContainer = styled.div`
+export interface DragPreviewContainerProps {
+  isHidden?: boolean;
+  isPreview?: boolean;
+}
+
+export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
+  transform: ${props => (props.isPreview ? 'rotate(5deg)' : undefined)};
+  opacity: ${props => (props.isHidden ? 0 : 1)};
+`;
+
+const ListContainer = styled(DragPreviewContainer)`
   background-color: #e2e8f0;
   width: 288px;
   min-height: 3rem;
@@ -22,7 +32,6 @@ const ListTitleContainer = styled.div`
   font-size: 0.95rem;
   padding: 6px 7px 14px;
   cursor: pointer;
-  /* background-color: #e2e8f040; */
 `;
 
 const ListActionsButton = styled.button`
@@ -39,7 +48,7 @@ const ListActionsButton = styled.button`
   .dots-icon {
     color: #64748b;
     font-size: 1.3rem;
-    transition: background 84ms ease-in;
+    // transition: background 84ms ease-in;
   }
 
   &:hover {

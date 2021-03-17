@@ -1,10 +1,10 @@
 import { FC, PropsWithChildren, useRef, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
+import { AddNewItem, Card } from '../../components';
 import { DragItem } from '../../dragItem';
 import { useAppState, useDragItem } from '../../hooks';
-import { findListIndexById } from '../../utils';
-import { AddNewItem } from '../AddINewItem';
+import { isHidden } from '../../utils';
 import {
   ListActionsButton,
   ListActionsMenu,
@@ -21,19 +21,18 @@ interface Props {
   isPreview?: boolean;
 }
 
-const List: FC<PropsWithChildren<Props>> = ({ id, title, index, children, isPreview }) => {
+const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => {
   const { state, dispatch } = useAppState();
+  const { lists } = state;
+  const { draggedItem } = state;
   const [showListActionsMenu, setShowListActionsMenu] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const listIndex = findListIndexById(state.lists, id);
-
-  const { opacity, drag } = useDragItem({
+  const { drag } = useDragItem({
     type: 'LIST',
     id,
     index,
-    text: title,
-    children
+    title
   });
   const [, drop] = useDrop({
     accept: ['LIST', 'CARD'],
@@ -46,28 +45,30 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, children, isPrev
           return;
         }
 
-        dispatch({ type: 'MOVE_LIST', payload: { dragIndex, hoverIndex } });
+        dispatch({
+          type: 'MOVE_LIST',
+          payload: { dragIndex, hoverIndex }
+        });
+
         item.index = hoverIndex;
+      } else {
+        const dragIndex = item.index;
+        const hoverIndex = 0;
+        const sourceListId = item.listId;
+        const targetListId = id;
+
+        if (sourceListId === targetListId) {
+          return;
+        }
+
+        dispatch({
+          type: 'MOVE_TASK',
+          payload: { dragIndex, hoverIndex, sourceListId, targetListId }
+        });
+
+        item.index = hoverIndex;
+        item.listId = targetListId;
       }
-
-      // else {
-      //   const dragIndex = item.index;
-      //   const hoverIndex = 0;
-      //   const sourceListId = item.listId;
-      //   const targetListId = listId;
-
-      //   if (sourceListId === targetListId) {
-      //     return;
-      //   }
-
-      //   dispatch({
-      //     type: 'MOVE_TASK',
-      //     payload: { dragIndex, hoverIndex, sourceListId, targetListId }
-      //   });
-
-      //   item.index = hoverIndex;
-      //   item.listId = targetListId;
-      // }
     }
   });
 
@@ -79,7 +80,8 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, children, isPrev
   return (
     <ListContainer
       ref={listRef}
-      style={{ opacity, transform: isPreview ? 'rotate(5deg)' : undefined }}
+      isPreview={isPreview}
+      isHidden={isHidden({ isPreview, draggedItem, itemType: 'LIST', id })}
     >
       <ListTitleContainer>
         <ListTitle>{title}</ListTitle>
@@ -88,7 +90,11 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, children, isPrev
           {showListActionsMenu && <ListActionsMenu>no lo implementé todavía LOL</ListActionsMenu>}
         </ListActionsButton>
       </ListTitleContainer>
-      <ListCards>{children}</ListCards>
+      <ListCards>
+        {lists[index].tasks.map((task, i) => (
+          <Card id={task.id} index={i} text={task.text} listId={id} key={task.id} />
+        ))}
+      </ListCards>
       <AddNewItem
         itemType='card'
         handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { id, text } })}

@@ -1,11 +1,8 @@
-import { ReactNode } from 'react';
-
 export interface ListDragItem {
   type: 'LIST';
   id: string;
-  text: string;
+  title: string;
   index: number;
-  children: ReactNode | null;
 }
 
 export interface CardDragItem {
