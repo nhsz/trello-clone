@@ -1,9 +1,7 @@
 import { FC, PropsWithChildren, useRef, useState } from 'react';
-import { useDrop } from 'react-dnd';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { AddNewItem, Card } from '../../components';
-import { DragItem } from '../../dragItem';
-import { useAppState, useDragItem } from '../../hooks';
+import { useAppState, useDragItem, useDropList } from '../../hooks';
 import { isHidden } from '../../utils';
 import {
   ListActionsButton,
@@ -34,43 +32,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
     index,
     title
   });
-  const [, drop] = useDrop({
-    accept: ['LIST', 'CARD'],
-    hover(item: DragItem) {
-      if (item.type === 'LIST') {
-        const dragIndex = item.index;
-        const hoverIndex = index;
-
-        if (dragIndex === hoverIndex) {
-          return;
-        }
-
-        dispatch({
-          type: 'MOVE_LIST',
-          payload: { dragIndex, hoverIndex }
-        });
-
-        item.index = hoverIndex;
-      } else {
-        const dragIndex = item.index;
-        const hoverIndex = 0;
-        const sourceListId = item.listId;
-        const targetListId = id;
-
-        if (sourceListId === targetListId) {
-          return;
-        }
-
-        dispatch({
-          type: 'MOVE_TASK',
-          payload: { dragIndex, hoverIndex, sourceListId, targetListId }
-        });
-
-        item.index = hoverIndex;
-        item.listId = targetListId;
-      }
-    }
-  });
+  const { drop } = useDropList({ id, index });
 
   drag(drop(listRef));
 

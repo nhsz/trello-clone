@@ -15,7 +15,7 @@ const FooterContainer = styled.footer`
 
   a {
     color: #a5b4fc;
-    // transition: all 0.33s ease-in;
+    transition: all 0.33s ease-in;
 
     &:hover {
       color: #ff3c88;
@@ -27,7 +27,7 @@ const FooterContainer = styled.footer`
     position: relative;
     top: 1.4px;
     fill: transparent;
-    // transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
 
     &:hover {
       fill: #1a120d;

@@ -13,7 +13,7 @@ const CardContainer = styled(DragPreviewContainer)`
   max-width: 280px;
   border-radius: 3px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  // transition: background 84ms ease-in;
+  transition: background 84ms ease-in;
   position: relative;
 
   &:hover {
@@ -29,7 +29,7 @@ const CardContainer = styled(DragPreviewContainer)`
     cursor: pointer;
     background-color: #f1f5f9cc;
     z-index: 1;
-    // transition: all 84ms ease-in;
+    transition: all 84ms ease-in;
 
     &:hover {
       color: #64748b;
@@ -61,4 +61,16 @@ const TextContainer = styled.p`
   overflow: hidden;
 `;
 
-export { CardContainer, TextContainer, CardIcons };
+const Overlay = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: #000000a6;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+`;
+
+export { CardContainer, TextContainer, CardIcons, Overlay };

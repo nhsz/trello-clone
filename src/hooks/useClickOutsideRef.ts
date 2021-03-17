@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-interface Props {
+interface Params {
   mode: boolean;
   setMode: () => void;
 }
 
-const useClickOutsideRef = ({ mode, setMode }: Props) => {
+const useClickOutsideRef = ({ mode, setMode }: Params) => {
   const ref = useRef(null);
 
   const clickOutsideListener = useCallback(

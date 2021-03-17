@@ -48,7 +48,7 @@ const ListActionsButton = styled.button`
   .dots-icon {
     color: #64748b;
     font-size: 1.3rem;
-    // transition: background 84ms ease-in;
+    transition: background 84ms ease-in;
   }
 
   &:hover {

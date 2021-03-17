@@ -33,7 +33,6 @@ const data: AppState = {
       id: nanoid(),
       title: 'In Progress',
       tasks: [
-        { id: nanoid(), text: 'Move card' },
         { id: nanoid(), text: 'List Actions menu' },
         { id: nanoid(), text: 'Remove list' }
       ]
@@ -42,6 +41,7 @@ const data: AppState = {
       id: nanoid(),
       title: 'Done',
       tasks: [
+        { id: nanoid(), text: 'Move card' },
         { id: nanoid(), text: 'Move list' },
         { id: nanoid(), text: 'Edit card' },
         { id: nanoid(), text: 'Remove card' },

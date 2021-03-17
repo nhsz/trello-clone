@@ -1,11 +1,9 @@
 import { FC, useRef, useState } from 'react';
-import { useDrop } from 'react-dnd';
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
-import { CardDragItem } from '../../dragItem';
-import { useAppState, useClickOutsideRef, useDragItem } from '../../hooks';
+import { useAppState, useClickOutsideRef, useDragItem, useDropCard } from '../../hooks';
 import { isHidden } from '../../utils';
 import { EditItemForm } from '../EditItemForm';
-import { CardContainer, CardIcons, TextContainer } from './Card.styles';
+import { CardContainer, CardIcons, Overlay, TextContainer } from './Card.styles';
 
 interface Props {
   id: string;
@@ -26,31 +24,7 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
   });
 
   const { drag } = useDragItem({ type: 'CARD', id, text, index, listId });
-  const [, drop] = useDrop({
-    accept: 'CARD',
-    hover(item: CardDragItem) {
-      if (item.id === id) {
-        return;
-      }
-
-      const dragIndex = item.index;
-      const hoverIndex = index;
-      const sourceListId = item.listId;
-      const targetListId = listId;
-
-      if (dragIndex === hoverIndex) {
-        return;
-      }
-
-      dispatch({
-        type: 'MOVE_TASK',
-        payload: { dragIndex, hoverIndex, sourceListId, targetListId }
-      });
-
-      item.index = hoverIndex;
-      item.listId = targetListId;
-    }
-  });
+  const { drop } = useDropCard({ id, index, listId });
 
   drag(drop(ref));
 
@@ -73,21 +47,7 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
         </CardIcons>
       </CardContainer>
 
-      {editMode && (
-        <div
-          style={{
-            height: '100%',
-            width: '100%',
-            backgroundColor: '#000000a6',
-            position: 'fixed',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 99
-          }}
-        ></div>
-      )}
+      {editMode && <Overlay />}
 
       {editMode && (
         <div
