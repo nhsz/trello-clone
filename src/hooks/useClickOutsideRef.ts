@@ -24,7 +24,7 @@ const useClickOutsideRef = ({ mode, setMode }: Params) => {
     return () => document.removeEventListener('click', clickOutsideListener);
   });
 
-  return ref;
+  return { ref, clickOutsideListener };
 };
 
 export { useClickOutsideRef };

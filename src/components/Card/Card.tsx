@@ -24,8 +24,8 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
   const [editMode, setEditMode] = useState(false);
   const { state, dispatch } = useAppState();
   const { draggedItem } = state;
-  const ref = useRef<HTMLDivElement>(null);
-  const wrapperRef = useClickOutsideRef({
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { ref } = useClickOutsideRef({
     mode: editMode,
     setMode: () => setEditMode(false)
   });
@@ -45,7 +45,7 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
       <CardContainer
         isHidden={isHidden({ isPreview, draggedItem, itemType: 'CARD', id })}
         isPreview={isPreview}
-        ref={ref}
+        ref={containerRef}
       >
         <TextContainer>{text}</TextContainer>
         <CardIcons>
@@ -56,7 +56,7 @@ const Card: FC<Props> = ({ id, index, text, listId, isPreview }) => {
 
       {editMode && <BackgroundOverlay />}
       {editMode && (
-        <WrapperContainer ref={wrapperRef}>
+        <WrapperContainer ref={ref}>
           <EditItemForm
             itemType='card'
             initialText={text}

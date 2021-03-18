@@ -8,8 +8,12 @@ const ListActionsContainer = styled.div`
   box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
   position: absolute;
   top: 40.5px;
-  left: 230px;
+  left: 24px;
   z-index: 99;
+
+  @media (min-width: 560px) {
+    left: 230px;
+  }
 `;
 
 const ListActionsHeader = styled.section`
@@ -51,11 +55,24 @@ const ListActionsUl = styled.ul`
 
 const ListActionsItem = styled.li`
   color: #172b4d;
-  padding: 6px 12px;
+  padding: 0 12px;
   margin: 0 -12px;
 
   &:hover {
     background-color: rgba(9, 30, 66, 0.04);
+  }
+
+  button {
+    display: block;
+    background-color: transparent;
+    padding: 6px 0;
+    width: 100%;
+    text-align: left;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
   }
 `;
 

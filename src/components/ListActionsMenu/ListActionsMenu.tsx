@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
+import { useClickOutsideRef } from '../../hooks';
 import {
   DisabledItem,
   ListActionsContainer,
@@ -11,12 +12,24 @@ import {
 } from './ListActionsMenu.styles';
 
 interface Props {
+  isOpen: boolean;
   handleClose: () => void;
+  handleRemove: () => void;
 }
 
-const ListActionsMenu: FC<Props> = ({ handleClose }) => {
+const ListActionsMenu: FC<Props> = ({ isOpen, handleClose, handleRemove }) => {
+  const { ref, clickOutsideListener } = useClickOutsideRef({
+    mode: isOpen,
+    setMode: handleClose
+  });
+
+  const removeList = () => {
+    document.removeEventListener('click', clickOutsideListener);
+    handleRemove();
+  };
+
   return (
-    <ListActionsContainer>
+    <ListActionsContainer ref={ref}>
       <ListActionsHeader>
         <ListActionsTitle>List actions</ListActionsTitle>
         <HiOutlineX className='x-sign' onClick={handleClose} />
@@ -25,28 +38,42 @@ const ListActionsMenu: FC<Props> = ({ handleClose }) => {
       <ListActionsDivider />
 
       <ListActionsUl>
-        <ListActionsItem>Add card...</ListActionsItem>
-        <ListActionsItem>Copy list...</ListActionsItem>
-        <DisabledItem>Move list... [WIP]</DisabledItem>
+        <ListActionsItem>
+          <button>Add card...</button>
+        </ListActionsItem>
+        <ListActionsItem>
+          <button>Copy list...</button>
+        </ListActionsItem>
+        <DisabledItem>
+          <button disabled>Move list... [WIP]</button>
+        </DisabledItem>
       </ListActionsUl>
 
       <ListActionsDivider />
 
       <ListActionsUl>
-        <DisabledItem>Sort by... [WIP]</DisabledItem>
+        <DisabledItem>
+          <button disabled>Sort by... [WIP]</button>
+        </DisabledItem>
       </ListActionsUl>
 
       <ListActionsDivider />
 
       <ListActionsUl>
-        <DisabledItem>Move all cards in this list... [WIP]</DisabledItem>
-        <ListActionsItem>Archive all cards in this list...</ListActionsItem>
+        <DisabledItem>
+          <button disabled>Move all cards in this list... [WIP]</button>
+        </DisabledItem>
+        <ListActionsItem>
+          <button>Archive all cards in this list...</button>
+        </ListActionsItem>
       </ListActionsUl>
 
       <ListActionsDivider />
 
       <ListActionsUl>
-        <ListActionsItem>Archive this list</ListActionsItem>
+        <ListActionsItem>
+          <button onClick={removeList}>Archive this list</button>
+        </ListActionsItem>
       </ListActionsUl>
     </ListActionsContainer>
   );

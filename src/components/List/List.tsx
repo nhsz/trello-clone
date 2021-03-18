@@ -35,9 +35,9 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
 
   drag(drop(listRef));
 
-  // onClick={() => dispatch({ type: 'REMOVE_LIST', payload: listId })}
   const toggleMenu = () => setShowListActionsMenu(showListActionsMenu => !showListActionsMenu);
   const closeMenu = () => setShowListActionsMenu(false);
+  const handleRemove = () => dispatch({ type: 'REMOVE_LIST', payload: id });
   const handleEsc = (event: KeyboardEvent) => {
     if (event.key === 'Escape') setShowListActionsMenu(false);
   };
@@ -53,7 +53,13 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
         <ListActionsButton onClick={toggleMenu} onKeyDown={handleEsc}>
           <HiOutlineDotsHorizontal className='dots-icon' />
         </ListActionsButton>
-        {showListActionsMenu && <ListActionsMenu handleClose={closeMenu} />}
+        {showListActionsMenu && (
+          <ListActionsMenu
+            isOpen={showListActionsMenu}
+            handleClose={closeMenu}
+            handleRemove={handleRemove}
+          />
+        )}
       </ListTitleContainer>
       <ListCards>
         {lists[index].tasks.map((task, i) => (
