@@ -1,11 +1,10 @@
-import { FC, PropsWithChildren, useRef, useState } from 'react';
+import { FC, KeyboardEvent, PropsWithChildren, useRef, useState } from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
-import { AddNewItem, Card } from '../../components';
+import { AddNewItem, Card, ListActionsMenu } from '../../components';
 import { useAppState, useDragItem, useDropList } from '../../hooks';
 import { isHidden } from '../../utils';
 import {
   ListActionsButton,
-  ListActionsMenu,
   ListCards,
   ListContainer,
   ListTitle,
@@ -37,7 +36,10 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   drag(drop(listRef));
 
   // onClick={() => dispatch({ type: 'REMOVE_LIST', payload: listId })}
-  const showMenu = () => setShowListActionsMenu(true);
+  const showMenu = () => setShowListActionsMenu(showListActionsMenu => !showListActionsMenu);
+  const handleEsc = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') setShowListActionsMenu(false);
+  };
 
   return (
     <ListContainer
@@ -47,10 +49,10 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
     >
       <ListTitleContainer>
         <ListTitle>{title}</ListTitle>
-        <ListActionsButton onClick={showMenu}>
+        <ListActionsButton onClick={showMenu} onKeyDown={handleEsc}>
           <HiOutlineDotsHorizontal className='dots-icon' />
-          {showListActionsMenu && <ListActionsMenu>no lo implementé todavía LOL</ListActionsMenu>}
         </ListActionsButton>
+        {showListActionsMenu && <ListActionsMenu />}
       </ListTitleContainer>
       <ListCards>
         {lists[index].tasks.map((task, i) => (

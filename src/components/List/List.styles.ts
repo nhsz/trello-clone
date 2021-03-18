@@ -77,13 +77,4 @@ const ListCards = styled.div`
   overflow-x: hidden;
 `;
 
-const ListActionsMenu = styled.p``;
-
-export {
-  ListContainer,
-  ListTitle,
-  ListActionsMenu,
-  ListTitleContainer,
-  ListActionsButton,
-  ListCards
-};
+export { ListContainer, ListTitle, ListTitleContainer, ListActionsButton, ListCards };

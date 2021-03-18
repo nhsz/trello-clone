@@ -11,13 +11,15 @@ import {
 } from '../utils';
 
 export type Action = TaskAction | ListAction | DragAction;
+type Reducer = (state: AppState, action: Action) => AppState;
 
-const appStateReducer = (state: AppState, action: Action): AppState => {
+const appStateReducer: Reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TASK': {
+      const { lists } = state;
       const { id, text } = action.payload;
-      const targetListIndex = findListIndexById(state.lists, id);
-      const targetList = state.lists[targetListIndex];
+      const targetListIndex = findListIndexById(lists, id);
+      const targetList = lists[targetListIndex];
       const newTargetList = {
         ...targetList,
         tasks: [...targetList.tasks, { id: nanoid(), text }]
@@ -25,7 +27,7 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
 
       return {
         ...state,
-        lists: overrideListAtIndex(state.lists, newTargetList, targetListIndex)
+        lists: overrideListAtIndex(lists, newTargetList, targetListIndex)
       };
     }
 
@@ -44,10 +46,11 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
     }
 
     case 'EDIT_TASK': {
+      const { lists } = state;
       const { id, text } = action.payload;
-      const listId = findTaskList(state.lists, id);
-      const targetListIndex = findListIndexById(state.lists, listId);
-      const targetList = state.lists[targetListIndex];
+      const listId = findTaskList(lists, id);
+      const targetListIndex = findListIndexById(lists, listId);
+      const targetList = lists[targetListIndex];
       const newTargetList = {
         ...targetList,
         tasks: targetList.tasks.map(task => {
@@ -64,7 +67,7 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
 
       return {
         ...state,
-        lists: overrideListAtIndex(state.lists, newTargetList, targetListIndex)
+        lists: overrideListAtIndex(lists, newTargetList, targetListIndex)
       };
     }
 
@@ -86,11 +89,12 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
     }
 
     case 'REMOVE_LIST': {
+      const { lists } = state;
       const listId = action.payload;
 
       return {
         ...state,
-        lists: state.lists.filter(list => list.id !== listId)
+        lists: lists.filter(list => list.id !== listId)
       };
     }
 
@@ -110,7 +114,7 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       };
       const stateWithUpdatedSourceList = {
         ...state,
-        lists: overrideListAtIndex(state.lists, updatedSourceList, sourceListIndex)
+        lists: overrideListAtIndex(lists, updatedSourceList, sourceListIndex)
       };
 
       const targetList = stateWithUpdatedSourceList.lists[targetListIndex];

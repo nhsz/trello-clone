@@ -30,7 +30,7 @@ const App: FC = () => {
         />
       </Board>
 
-      <Footer siteUrl='https://twitter.com/_nhsz' repoUrl='#' />
+      <Footer siteUrl='https://twitter.com/_nhsz' repoUrl='https://github.com/nhsz/trello-clone' />
     </>
   );
 };

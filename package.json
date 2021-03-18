@@ -19,8 +19,7 @@
     "react-icons": "^4.2.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.2.1",
-    "typescript": "^4.2.3",
-    "web-vitals": "^1.1.1"
+    "typescript": "^4.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,6 +46,6 @@
     ]
   },
   "devDependencies": {
-    "use-reducer-logger": "^1.0.2"
+    "prettier": "^2.2.1"
   }
 }
