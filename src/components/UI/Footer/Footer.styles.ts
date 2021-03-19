@@ -16,7 +16,7 @@ const FooterContainer = styled.footer`
     color: #a5b4fc;
     transition: all 0.33s ease-in;
     background: linear-gradient(#332c49 0 0) left / var(--d, 0%) 100% no-repeat;
-    padding: 2px 4px;
+    padding: 2px 6px;
 
     &:hover {
       --d: 100%;
@@ -34,6 +34,12 @@ const FooterContainer = styled.footer`
     &:hover {
       fill: #1a120d;
     }
+  }
+
+  .pipe-separator {
+    color: #e2e8f0;
+    font-size: 18px;
+    margin: 0 -6px;
   }
 `;
 
