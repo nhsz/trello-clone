@@ -41,6 +41,10 @@ const FooterContainer = styled.footer`
     font-size: 18px;
     margin: 0 -5px;
   }
+
+  @media (max-height: 500px) {
+    display: none;
+  }
 `;
 
 export { FooterContainer };
