@@ -4,7 +4,7 @@ import {
   NewItemButton,
   NewItemButtonContainer,
   NewItemInput
-} from '../AddINewItem/NewItemForm/NewItemForm.styles';
+} from '../NewItemForm/NewItemForm.styles';
 
 const EditItemFormContainer = styled.div<FormProps>`
   display: flex;

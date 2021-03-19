@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { NewItemButton } from '../AddINewItem/NewItemForm/NewItemForm.styles';
 import {
   ListActionsContainer,
   ListActionsDivider,
   ListActionsHeader,
   ListActionsTitle
 } from '../ListActionsMenu/ListActionsMenu.styles';
+import { NewItemButton } from '../NewItemForm/NewItemForm.styles';
 
 const MoveListHeader = styled(ListActionsHeader)`
   .chevron-left {
