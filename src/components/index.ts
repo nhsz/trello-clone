@@ -3,3 +3,4 @@ export * from './App';
 export * from './Card';
 export * from './List';
 export * from './ListActionsMenu';
+export * from './MoveListMenu';

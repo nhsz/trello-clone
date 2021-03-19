@@ -1,6 +1,6 @@
-import { FC, KeyboardEvent, PropsWithChildren, useRef, useState } from 'react';
+import { FC, KeyboardEvent, PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
-import { AddNewItem, Card, ListActionsMenu } from '../../components';
+import { AddNewItem, Card, ListActionsMenu, MoveListMenu } from '../../components';
 import { useAppState, useDragItem, useDropList } from '../../hooks';
 import { isHidden } from '../../utils';
 import {
@@ -23,6 +23,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   const { lists } = state;
   const { draggedItem } = state;
   const [showListActionsMenu, setShowListActionsMenu] = useState(false);
+  const [showMoveListMenu, setMoveListMenu] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const { drag } = useDragItem({
@@ -36,7 +37,16 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   drag(drop(ref));
 
   const toggleMenu = () => setShowListActionsMenu(showListActionsMenu => !showListActionsMenu);
-  const closeMenu = () => setShowListActionsMenu(false);
+  const closeListActionsMenu = () => setShowListActionsMenu(false);
+  const closeMoveListMenu = () => setMoveListMenu(false);
+  const goToMoveListMenu = () => {
+    setShowListActionsMenu(false);
+    setMoveListMenu(true);
+  };
+  const goBackToListActionsMenu = () => {
+    setMoveListMenu(false);
+    setShowListActionsMenu(true);
+  };
   const handleRemove = () => dispatch({ type: 'REMOVE_LIST', payload: id });
   const addTask = (text: string) => dispatch({ type: 'ADD_TASK', payload: { id, text } });
   // const addTaskFirst = (text: string) =>
@@ -50,8 +60,21 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
     setShowListActionsMenu(false);
   };
   const handleEsc = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') setShowListActionsMenu(false);
+    if (event.key === 'Escape') {
+      if (showListActionsMenu) setShowListActionsMenu(false);
+      if (showMoveListMenu) {
+        setMoveListMenu(false);
+        setShowListActionsMenu(true);
+      }
+    }
   };
+
+  useEffect(() => {
+    // attach listener on component mount to detect clicks outside edit form area
+    document.addEventListener('keydown', (handleEsc as unknown) as EventListener);
+    // detach listener on component unmount
+    return () => document.removeEventListener('keydown', (handleEsc as unknown) as EventListener);
+  });
 
   return (
     <ListContainer
@@ -61,16 +84,24 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
     >
       <ListTitleContainer>
         <ListTitle>{title}</ListTitle>
-        <ListActionsButton onClick={toggleMenu} onKeyDown={handleEsc}>
+        <ListActionsButton onClick={toggleMenu}>
           <HiOutlineDotsHorizontal className='dots-icon' />
         </ListActionsButton>
         {showListActionsMenu && (
           <ListActionsMenu
             isOpen={showListActionsMenu}
-            handleClose={closeMenu}
+            handleClose={closeListActionsMenu}
             handleArchiveAllTasks={archiveTasks}
             handleMoveAllTasks={moveAllTasksInThisList}
             handleRemove={handleRemove}
+            showMoveListMenu={goToMoveListMenu}
+          />
+        )}
+        {showMoveListMenu && (
+          <MoveListMenu
+            isOpen={showListActionsMenu}
+            handleClose={closeMoveListMenu}
+            handleGoBack={goBackToListActionsMenu}
           />
         )}
       </ListTitleContainer>

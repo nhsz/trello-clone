@@ -17,6 +17,7 @@ interface Props {
   handleArchiveAllTasks: () => void;
   handleMoveAllTasks: () => void;
   handleRemove: () => void;
+  showMoveListMenu: () => void;
 }
 
 const ListActionsMenu: FC<Props> = ({
@@ -24,7 +25,8 @@ const ListActionsMenu: FC<Props> = ({
   handleClose,
   handleArchiveAllTasks,
   handleMoveAllTasks,
-  handleRemove
+  handleRemove,
+  showMoveListMenu
 }) => {
   const { ref, clickOutsideListener } = useClickOutsideRef({
     mode: isOpen,
@@ -47,21 +49,21 @@ const ListActionsMenu: FC<Props> = ({
 
       <ListActionsUl>
         <DisabledItem>
-          <button disabled>Add card...</button>
+          <button disabled>Add card... [not implemented yet]</button>
         </DisabledItem>
         <DisabledItem>
-          <button disabled>Copy list... [WIP]</button>
+          <button disabled>Copy list... [not implemented yet]</button>
         </DisabledItem>
-        <DisabledItem>
-          <button disabled>Move list... [WIP]</button>
-        </DisabledItem>
+        <ListActionsItem>
+          <button onClick={showMoveListMenu}>Move list... [WIP]</button>
+        </ListActionsItem>
       </ListActionsUl>
 
       <ListActionsDivider />
 
       <ListActionsUl>
         <DisabledItem>
-          <button disabled>Sort by... [WIP]</button>
+          <button disabled>Sort by... [not implemented yet]</button>
         </DisabledItem>
       </ListActionsUl>
 
