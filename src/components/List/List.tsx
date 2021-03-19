@@ -102,7 +102,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
         )}
         {showMoveListMenu && (
           <MoveListMenu
-            isOpen={showListActionsMenu}
+            isOpen={showMoveListMenu}
             handleClose={closeMoveListMenu}
             handleGoBack={goBackToListActionsMenu}
           />

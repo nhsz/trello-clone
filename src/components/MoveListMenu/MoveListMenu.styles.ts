@@ -1,12 +1,11 @@
 import styled from 'styled-components';
+import { NewItemButton } from '../AddINewItem/NewItemForm/NewItemForm.styles';
 import {
   ListActionsContainer,
   ListActionsDivider,
   ListActionsHeader,
   ListActionsTitle
 } from '../ListActionsMenu/ListActionsMenu.styles';
-
-const MoveListContainer = styled(ListActionsContainer)``;
 
 const MoveListHeader = styled(ListActionsHeader)`
   .chevron-left {
@@ -22,9 +21,6 @@ const MoveListHeader = styled(ListActionsHeader)`
     }
   }
 `;
-const MoveListTitle = styled(ListActionsTitle)``;
-
-const MoveListDivider = styled(ListActionsDivider)``;
 
 const PositionSelectorContainer = styled.div`
   background-color: rgba(9, 30, 66, 0.04);
@@ -34,7 +30,7 @@ const PositionSelectorContainer = styled.div`
   cursor: pointer;
   display: block;
   margin-top: 8px;
-  max-width: 300px;
+  margin-bottom: 16px;
   padding: 6px 12px;
   position: relative;
   -webkit-user-select: none;
@@ -65,7 +61,19 @@ const PositionSelectorContainer = styled.div`
   }
 `;
 
-const BoardSelectorContainer = styled(PositionSelectorContainer)``;
+const MoveListContainer = styled(ListActionsContainer)``;
+const MoveListTitle = styled(ListActionsTitle)``;
+const MoveListDivider = styled(ListActionsDivider)``;
+const MoveButton = styled(NewItemButton)`
+  padding-left: 24px;
+  padding-right: 24px;
+`;
+const BoardSelectorContainer = styled(PositionSelectorContainer)`
+  margin-bottom: 0;
+`;
+const SelectorContainer = styled.div`
+  padding-bottom: 6px;
+`;
 
 export {
   MoveListContainer,
@@ -73,5 +81,7 @@ export {
   MoveListDivider,
   MoveListTitle,
   PositionSelectorContainer,
-  BoardSelectorContainer
+  BoardSelectorContainer,
+  MoveButton,
+  SelectorContainer
 };

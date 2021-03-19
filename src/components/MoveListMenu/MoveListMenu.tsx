@@ -3,11 +3,13 @@ import { HiOutlineChevronLeft, HiOutlineX } from 'react-icons/hi';
 import { useClickOutsideRef } from '../../hooks';
 import {
   BoardSelectorContainer,
+  MoveButton,
   MoveListContainer,
   MoveListDivider,
   MoveListHeader,
   MoveListTitle,
-  PositionSelectorContainer
+  PositionSelectorContainer,
+  SelectorContainer
 } from './MoveListMenu.styles';
 
 interface Props {
@@ -17,7 +19,8 @@ interface Props {
 }
 
 const MoveListMenu: FC<Props> = ({ isOpen, handleClose, handleGoBack }) => {
-  const { ref, clickOutsideListener } = useClickOutsideRef({
+  // const { state } = useAppState();
+  const { ref } = useClickOutsideRef({
     mode: isOpen,
     setMode: handleClose
   });
@@ -32,15 +35,19 @@ const MoveListMenu: FC<Props> = ({ isOpen, handleClose, handleGoBack }) => {
 
       <MoveListDivider />
 
-      <BoardSelectorContainer>
-        <span className='position-text'>Board</span>
-        <span className='position-number'>default (this demo has only one)</span>
-      </BoardSelectorContainer>
+      <SelectorContainer>
+        <BoardSelectorContainer>
+          <span className='position-text'>Board</span>
+          <span className='position-number'>default (this demo has only one)</span>
+        </BoardSelectorContainer>
 
-      <PositionSelectorContainer>
-        <span className='position-text'>Position</span>
-        <span className='position-number'>2</span>
-      </PositionSelectorContainer>
+        <PositionSelectorContainer>
+          <span className='position-text'>Position</span>
+          <span className='position-number'>2</span>
+        </PositionSelectorContainer>
+
+        <MoveButton>Move</MoveButton>
+      </SelectorContainer>
     </MoveListContainer>
   );
 };
