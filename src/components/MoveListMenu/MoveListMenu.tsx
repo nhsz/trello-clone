@@ -10,6 +10,7 @@ import {
   MoveListHeader,
   MoveListTitle,
   PositionSelectorContainer,
+  Select,
   SelectorContainer
 } from './MoveListMenu.styles';
 
@@ -26,6 +27,7 @@ const MoveListMenu: FC<Props> = ({ isOpen, handleClose, handleGoBack, listId }) 
     mode: isOpen,
     setMode: handleClose
   });
+  const defaultPosition = findListIndexById(state.lists, listId) + 1;
 
   return (
     <MoveListContainer ref={ref}>
@@ -45,7 +47,18 @@ const MoveListMenu: FC<Props> = ({ isOpen, handleClose, handleGoBack, listId }) 
 
         <PositionSelectorContainer>
           <span className='position-text'>Position</span>
-          <span className='position-number'>{findListIndexById(state.lists, listId) + 1}</span>
+          <span className='position-number'>{defaultPosition}</span>
+
+          <Select name='positions' id='positions-select' defaultValue={defaultPosition}>
+            {state.lists.map(list => {
+              const position = findListIndexById(state.lists, list.id) + 1;
+              return (
+                <option value={position} key={list.id}>
+                  {list.id === listId ? `${position} (current)` : position}
+                </option>
+              );
+            })}
+          </Select>
         </PositionSelectorContainer>
 
         <MoveButton>Move</MoveButton>

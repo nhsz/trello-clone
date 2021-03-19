@@ -27,12 +27,12 @@ const PositionSelectorContainer = styled.div`
   box-shadow: none;
   border: none;
   border-radius: 3px;
-  cursor: pointer;
   display: block;
   margin-top: 8px;
   margin-bottom: 16px;
   padding: 6px 12px;
   position: relative;
+  cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
   transition-property: background-color, border-color, box-shadow;
@@ -74,6 +74,15 @@ const BoardSelectorContainer = styled(PositionSelectorContainer)`
 const SelectorContainer = styled.div`
   padding-bottom: 6px;
 `;
+const Select = styled.select`
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+`;
 
 export {
   MoveListContainer,
@@ -83,5 +92,6 @@ export {
   PositionSelectorContainer,
   BoardSelectorContainer,
   MoveButton,
-  SelectorContainer
+  SelectorContainer,
+  Select
 };

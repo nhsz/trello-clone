@@ -14,6 +14,10 @@ const ListActionsContainer = styled.div`
   @media (min-width: 560px) {
     left: 230px;
   }
+
+  @media (max-width: 960px) {
+    left: 32px;
+  }
 `;
 
 const ListActionsHeader = styled.section`
