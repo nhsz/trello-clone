@@ -77,4 +77,17 @@ const ListCards = styled.div`
   overflow-x: hidden;
 `;
 
-export { ListContainer, ListTitle, ListTitleContainer, ListActionsButton, ListCards };
+const AddFirstContainer = styled.div`
+  margin-top: 0.5px;
+  margin-left: 1px;
+  margin-bottom: 8px;
+`;
+
+export {
+  ListContainer,
+  ListTitle,
+  ListTitleContainer,
+  ListActionsButton,
+  ListCards,
+  AddFirstContainer
+};

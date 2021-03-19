@@ -19,7 +19,14 @@ const AddNewItem: FC<Props> = ({ itemType, handleAdd }) => {
   };
 
   if (showForm) {
-    return <NewItemForm itemType={itemType} handleAdd={handleAddItem} handleClose={handleClose} />;
+    return (
+      <NewItemForm
+        itemType={itemType}
+        isOpen={showForm}
+        handleAdd={handleAddItem}
+        handleClose={handleClose}
+      />
+    );
   }
 
   return (

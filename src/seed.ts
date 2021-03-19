@@ -47,7 +47,8 @@ const data: AppState = {
       tasks: [
         {
           id: nanoid(),
-          text: 'list actions menu: archive all cards, move all cards to a list, archive list'
+          text:
+            'list actions menu: archive all cards, move all cards to a list, archive list, add card'
         },
         { id: nanoid(), text: 'list: add, remove, move, ' },
         { id: nanoid(), text: 'task: add, edit, remove, move' }

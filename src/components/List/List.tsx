@@ -1,9 +1,10 @@
 import { FC, KeyboardEvent, PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
-import { AddNewItem, Card, ListActionsMenu, MoveListMenu } from '../../components';
+import { AddNewItem, Card, ListActionsMenu, MoveListMenu, NewItemForm } from '../../components';
 import { useAppState, useDragItem, useDropList } from '../../hooks';
 import { isHidden } from '../../utils';
 import {
+  AddFirstContainer,
   ListActionsButton,
   ListCards,
   ListContainer,
@@ -24,6 +25,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   const { draggedItem } = state;
   const [showListActionsMenu, setShowListActionsMenu] = useState(false);
   const [showMoveListMenu, setMoveListMenu] = useState(false);
+  const [addFirst, setAddFirst] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const { drag } = useDragItem({
@@ -35,6 +37,22 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   const { drop } = useDropList({ id, index });
 
   drag(drop(ref));
+
+  const handleRemove = () => dispatch({ type: 'REMOVE_LIST', payload: id });
+  const addTask = (text: string) => dispatch({ type: 'ADD_TASK', payload: { id, text } });
+  const addTaskFirst = (text: string) => {
+    dispatch({ type: 'ADD_TASK', payload: { id, text, addFirst: true } });
+  };
+
+  const handleOpenFirst = () => {
+    setAddFirst(true);
+    closeListActionsMenu();
+  };
+  const handleCloseFirst = () => setAddFirst(false);
+  const handleAddItemFirst = (text: string) => {
+    addTaskFirst(text);
+    handleCloseFirst();
+  };
 
   const toggleMenu = () => {
     setMoveListMenu(false);
@@ -50,10 +68,6 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
     setMoveListMenu(false);
     setShowListActionsMenu(true);
   };
-  const handleRemove = () => dispatch({ type: 'REMOVE_LIST', payload: id });
-  const addTask = (text: string) => dispatch({ type: 'ADD_TASK', payload: { id, text } });
-  // const addTaskFirst = (text: string) =>
-  //   dispatch({ type: 'ADD_TASK', payload: { id, text, addFirst: true } });
   const moveAllTasksInThisList = () => {
     dispatch({ type: 'MOVE_ALL_TASKS_IN_THIS_LIST', payload: id });
     setShowListActionsMenu(false);
@@ -93,7 +107,9 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
         {showListActionsMenu && (
           <ListActionsMenu
             isOpen={showListActionsMenu}
+            addFirst={addFirst}
             handleClose={closeListActionsMenu}
+            handleOpenFirst={handleOpenFirst}
             handleArchiveAllTasks={archiveTasks}
             handleMoveAllTasks={moveAllTasksInThisList}
             handleRemove={handleRemove}
@@ -110,6 +126,17 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
         )}
       </ListTitleContainer>
       <ListCards>
+        {addFirst && (
+          <AddFirstContainer>
+            <NewItemForm
+              itemType={'card'}
+              isOpen={addFirst}
+              handleAdd={handleAddItemFirst}
+              handleClose={handleCloseFirst}
+            />
+          </AddFirstContainer>
+        )}
+
         {lists[index].tasks.map((task, i) => (
           <Card id={task.id} index={i} text={task.text} listId={id} key={task.id} />
         ))}

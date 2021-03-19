@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
-import { useFocus } from '../../hooks';
+import { useClickOutsideRef, useFocus } from '../../hooks';
 import {
   NewItemButton,
   NewItemButtonContainer,
@@ -10,11 +10,12 @@ import {
 
 interface Props {
   itemType: 'card' | 'list';
+  isOpen: boolean;
   handleAdd: (text: string) => void;
   handleClose: () => void;
 }
 
-const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
+const NewItemForm: FC<Props> = ({ itemType, isOpen, handleAdd, handleClose }) => {
   const [text, setText] = useState('');
   const inputRef = useFocus();
   const hasContent = text.trim().length > 0;
@@ -39,8 +40,13 @@ const NewItemForm: FC<Props> = ({ itemType, handleAdd, handleClose }) => {
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => setText(event.target.value);
 
+  const { ref } = useClickOutsideRef({
+    mode: isOpen,
+    setMode: handleClose
+  });
+
   return (
-    <NewItemFormContainer itemType={itemType}>
+    <NewItemFormContainer itemType={itemType} ref={ref}>
       <NewItemInput
         itemType={itemType}
         ref={inputRef}

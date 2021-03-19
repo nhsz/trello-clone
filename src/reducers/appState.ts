@@ -25,7 +25,7 @@ const appStateReducer: Reducer = (state, action) => {
       const newTargetList = {
         ...targetList,
         tasks: addFirst
-          ? [...targetList.tasks, { id: nanoid(), text }]
+          ? [{ id: nanoid(), text }, ...targetList.tasks]
           : [...targetList.tasks, { id: nanoid(), text }]
       };
 

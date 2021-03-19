@@ -13,7 +13,9 @@ import {
 
 interface Props {
   isOpen: boolean;
+  addFirst: boolean;
   handleClose: () => void;
+  handleOpenFirst: () => void;
   handleArchiveAllTasks: () => void;
   handleMoveAllTasks: () => void;
   handleRemove: () => void;
@@ -22,7 +24,9 @@ interface Props {
 
 const ListActionsMenu: FC<Props> = ({
   isOpen,
+  addFirst,
   handleClose,
+  handleOpenFirst,
   handleArchiveAllTasks,
   handleMoveAllTasks,
   handleRemove,
@@ -48,9 +52,9 @@ const ListActionsMenu: FC<Props> = ({
       <ListActionsDivider />
 
       <ListActionsUl>
-        <DisabledItem>
-          <button disabled>Add card... [not implemented yet]</button>
-        </DisabledItem>
+        <ListActionsItem>
+          <button onClick={addFirst ? handleClose : handleOpenFirst}>Add card...</button>
+        </ListActionsItem>
         <DisabledItem>
           <button disabled>Copy list... [not implemented yet]</button>
         </DisabledItem>
