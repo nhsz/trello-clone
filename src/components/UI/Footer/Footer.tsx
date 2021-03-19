@@ -14,7 +14,7 @@ const Footer: FC<PropsWithChildren<Props>> = ({ siteUrl, repoUrl }) => (
       <a href={siteUrl} target='_blank' rel='noopener noreferrer'>
         <code>nhsz</code>
       </a>{' '}
-      <span className='pipe-separator'>|</span>{' '}
+      <span className='separator'>|</span>{' '}
       <a href={repoUrl} target='_blank' rel='noopener noreferrer'>
         <code>&lt;/src code&gt;</code>
       </a>

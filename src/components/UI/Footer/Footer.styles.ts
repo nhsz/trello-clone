@@ -7,7 +7,7 @@ const FooterContainer = styled.footer`
   font-size: 0.9rem;
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 12px;
   height: 2rem;
   width: 100%;
   color: white;
@@ -36,10 +36,10 @@ const FooterContainer = styled.footer`
     }
   }
 
-  .pipe-separator {
-    color: #e2e8f0;
+  .separator {
+    color: #a5b4fc;
     font-size: 18px;
-    margin: 0 -6px;
+    margin: 0 -5px;
   }
 `;
 
