@@ -1,12 +1,7 @@
 import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useFocus } from '../../hooks';
-import {
-  EditItemButton,
-  EditItemButtonContainer,
-  EditItemFormContainer,
-  EditItemInput
-} from './EditItemForm.styles';
+import { EditItemButton, EditItemButtonContainer, EditItemFormContainer, EditItemInput } from './';
 
 interface Props {
   itemType: 'card' | 'list';

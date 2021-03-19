@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DragPreviewContainer } from '../List/List.styles';
+import { DragPreviewContainer } from '../List';
 
 const CardContainer = styled(DragPreviewContainer)`
   display: flex;

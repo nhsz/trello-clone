@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  FormProps,
-  NewItemButton,
-  NewItemButtonContainer,
-  NewItemInput
-} from '../NewItemForm/NewItemForm.styles';
+import { FormProps, NewItemButton, NewItemButtonContainer, NewItemInput } from '../NewItemForm';
 
 const EditItemFormContainer = styled.div<FormProps>`
   display: flex;

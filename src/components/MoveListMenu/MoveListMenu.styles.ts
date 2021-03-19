@@ -4,8 +4,8 @@ import {
   ListActionsDivider,
   ListActionsHeader,
   ListActionsTitle
-} from '../ListActionsMenu/ListActionsMenu.styles';
-import { NewItemButton } from '../NewItemForm/NewItemForm.styles';
+} from '../ListActionsMenu';
+import { NewItemButton } from '../NewItemForm';
 
 const MoveListHeader = styled(ListActionsHeader)`
   .chevron-left {
