@@ -19,12 +19,14 @@ const appStateReducer: Reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TASK': {
       const { lists } = state;
-      const { id, text } = action.payload;
+      const { id, text, addFirst } = action.payload;
       const targetListIndex = findListIndexById(lists, id);
       const targetList = lists[targetListIndex];
       const newTargetList = {
         ...targetList,
-        tasks: [...targetList.tasks, { id: nanoid(), text }]
+        tasks: addFirst
+          ? [...targetList.tasks, { id: nanoid(), text }]
+          : [...targetList.tasks, { id: nanoid(), text }]
       };
 
       return {

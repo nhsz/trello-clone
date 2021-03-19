@@ -1,7 +1,7 @@
 export type TaskAction =
   | {
       type: 'ADD_TASK';
-      payload: { id: string; text: string };
+      payload: { id: string; text: string; addFirst?: boolean };
     }
   | {
       type: 'EDIT_TASK';
