@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { HiOutlineChevronLeft, HiOutlineX } from 'react-icons/hi';
-import { useClickOutsideRef } from '../../hooks';
+import { useAppState, useClickOutsideRef } from '../../hooks';
+import { findListIndexById } from '../../utils';
 import {
   BoardSelectorContainer,
   MoveButton,
@@ -16,10 +17,11 @@ interface Props {
   isOpen: boolean;
   handleClose: () => void;
   handleGoBack: () => void;
+  listId: string;
 }
 
-const MoveListMenu: FC<Props> = ({ isOpen, handleClose, handleGoBack }) => {
-  // const { state } = useAppState();
+const MoveListMenu: FC<Props> = ({ isOpen, handleClose, handleGoBack, listId }) => {
+  const { state } = useAppState();
   const { ref } = useClickOutsideRef({
     mode: isOpen,
     setMode: handleClose
@@ -43,7 +45,7 @@ const MoveListMenu: FC<Props> = ({ isOpen, handleClose, handleGoBack }) => {
 
         <PositionSelectorContainer>
           <span className='position-text'>Position</span>
-          <span className='position-number'>2</span>
+          <span className='position-number'>{findListIndexById(state.lists, listId) + 1}</span>
         </PositionSelectorContainer>
 
         <MoveButton>Move</MoveButton>

@@ -105,6 +105,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
             isOpen={showMoveListMenu}
             handleClose={closeMoveListMenu}
             handleGoBack={goBackToListActionsMenu}
+            listId={id}
           />
         )}
       </ListTitleContainer>
