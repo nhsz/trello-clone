@@ -23,7 +23,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   const { lists } = state;
   const { draggedItem } = state;
   const [showListActionsMenu, setShowListActionsMenu] = useState(false);
-  const listRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const { drag } = useDragItem({
     type: 'LIST',
@@ -33,7 +33,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   });
   const { drop } = useDropList({ id, index });
 
-  drag(drop(listRef));
+  drag(drop(ref));
 
   const toggleMenu = () => setShowListActionsMenu(showListActionsMenu => !showListActionsMenu);
   const closeMenu = () => setShowListActionsMenu(false);
@@ -55,7 +55,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
 
   return (
     <ListContainer
-      ref={listRef}
+      ref={ref}
       isPreview={isPreview}
       isHidden={isHidden({ isPreview, draggedItem, itemType: 'LIST', id })}
     >
