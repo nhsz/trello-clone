@@ -15,10 +15,13 @@ const FooterContainer = styled.footer`
   a {
     color: #a5b4fc;
     transition: all 0.33s ease-in;
+    background: linear-gradient(#332c49 0 0) left / var(--d, 0%) 100% no-repeat;
+    padding: 2px 4px;
 
     &:hover {
+      --d: 100%;
       color: #ff3c88;
-      text-shadow: 1px 1px 2px #332c49;
+      text-shadow: 1px 1px 1px #b45c70;
     }
   }
 

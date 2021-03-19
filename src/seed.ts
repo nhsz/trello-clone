@@ -23,33 +23,33 @@ const data: AppState = {
       id: nanoid(),
       title: 'To Do',
       tasks: [
-        { id: nanoid(), text: 'Remaining List actions menu features' },
-        { id: nanoid(), text: 'Add Dark/Light Mode switch' },
-        { id: nanoid(), text: 'Fix CSS bugs' }
+        { id: nanoid(), text: 'list: edit title' },
+        { id: nanoid(), text: 'localStorage: set/get' },
+        { id: nanoid(), text: 'list actions menu: add card, copy list, sort by' },
+        { id: nanoid(), text: 'dark/light mode: add switch, `prefers-color-scheme`' },
+        { id: nanoid(), text: 'css: fix bugs' }
       ]
     },
     {
       id: nanoid(),
       title: 'In Progress',
       tasks: [
-        { id: nanoid(), text: 'Edit list title' },
-        { id: nanoid(), text: 'Save on localStorage' }
+        {
+          id: nanoid(),
+          text: 'list actions menu: move list'
+        }
       ]
     },
     {
       id: nanoid(),
       title: 'Done',
       tasks: [
-        { id: nanoid(), text: 'Move all cards to a list' },
-        { id: nanoid(), text: 'Archive all cards' },
-        { id: nanoid(), text: 'Remove list' },
-        { id: nanoid(), text: 'List Actions menu' },
-        { id: nanoid(), text: 'Move card' },
-        { id: nanoid(), text: 'Move list' },
-        { id: nanoid(), text: 'Edit card' },
-        { id: nanoid(), text: 'Remove card' },
-        { id: nanoid(), text: 'Add card' },
-        { id: nanoid(), text: 'Add list' }
+        {
+          id: nanoid(),
+          text: 'list actions menu: archive all cards, move all cards to a list, archive list'
+        },
+        { id: nanoid(), text: 'list: add, remove, move, ' },
+        { id: nanoid(), text: 'task: add, edit, remove, move' }
       ]
     }
   ],
