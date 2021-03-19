@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { DragItem } from './dragItem';
 
-interface Task {
+export interface Task {
   id: string;
   text: string;
 }
@@ -23,8 +23,7 @@ const data: AppState = {
       id: nanoid(),
       title: 'To Do',
       tasks: [
-        { id: nanoid(), text: 'Edit list title' },
-        { id: nanoid(), text: 'Save on localStorage' },
+        { id: nanoid(), text: 'Remaining List actions menu features' },
         { id: nanoid(), text: 'Add Dark/Light Mode switch' },
         { id: nanoid(), text: 'Fix CSS bugs' }
       ]
@@ -32,12 +31,18 @@ const data: AppState = {
     {
       id: nanoid(),
       title: 'In Progress',
-      tasks: [{ id: nanoid(), text: 'Remove list' }]
+      tasks: [
+        { id: nanoid(), text: 'Edit list title' },
+        { id: nanoid(), text: 'Save on localStorage' }
+      ]
     },
     {
       id: nanoid(),
       title: 'Done',
       tasks: [
+        { id: nanoid(), text: 'Move all cards to a list' },
+        { id: nanoid(), text: 'Archive all cards' },
+        { id: nanoid(), text: 'Remove list' },
         { id: nanoid(), text: 'List Actions menu' },
         { id: nanoid(), text: 'Move card' },
         { id: nanoid(), text: 'Move list' },

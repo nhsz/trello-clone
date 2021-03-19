@@ -14,10 +14,18 @@ import {
 interface Props {
   isOpen: boolean;
   handleClose: () => void;
+  handleArchiveAllTasks: () => void;
+  handleMoveAllTasks: () => void;
   handleRemove: () => void;
 }
 
-const ListActionsMenu: FC<Props> = ({ isOpen, handleClose, handleRemove }) => {
+const ListActionsMenu: FC<Props> = ({
+  isOpen,
+  handleClose,
+  handleArchiveAllTasks,
+  handleMoveAllTasks,
+  handleRemove
+}) => {
   const { ref, clickOutsideListener } = useClickOutsideRef({
     mode: isOpen,
     setMode: handleClose
@@ -38,12 +46,12 @@ const ListActionsMenu: FC<Props> = ({ isOpen, handleClose, handleRemove }) => {
       <ListActionsDivider />
 
       <ListActionsUl>
-        <ListActionsItem>
-          <button>Add card...</button>
-        </ListActionsItem>
-        <ListActionsItem>
-          <button>Copy list...</button>
-        </ListActionsItem>
+        <DisabledItem>
+          <button disabled>Add card...</button>
+        </DisabledItem>
+        <DisabledItem>
+          <button disabled>Copy list... [WIP]</button>
+        </DisabledItem>
         <DisabledItem>
           <button disabled>Move list... [WIP]</button>
         </DisabledItem>
@@ -60,11 +68,11 @@ const ListActionsMenu: FC<Props> = ({ isOpen, handleClose, handleRemove }) => {
       <ListActionsDivider />
 
       <ListActionsUl>
-        <DisabledItem>
-          <button disabled>Move all cards in this list... [WIP]</button>
-        </DisabledItem>
         <ListActionsItem>
-          <button>Archive all cards in this list...</button>
+          <button onClick={handleMoveAllTasks}>Move all cards in this list...</button>
+        </ListActionsItem>
+        <ListActionsItem>
+          <button onClick={handleArchiveAllTasks}>Archive all cards in this list...</button>
         </ListActionsItem>
       </ListActionsUl>
 

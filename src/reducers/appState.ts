@@ -2,8 +2,10 @@ import { nanoid } from 'nanoid';
 import { DragAction, ListAction, TaskAction } from '../actions';
 import { AppState } from '../contexts';
 import {
+  emptyAllOtherLists,
   findListIndexById,
   findTaskList,
+  getTasksFromOtherLists,
   insertItemAtIndex,
   moveItem,
   overrideListAtIndex,
@@ -140,6 +142,41 @@ const appStateReducer: Reducer = (state, action) => {
       return {
         ...state,
         lists: moveItem(lists, dragIndex, hoverIndex)
+      };
+    }
+
+    case 'ARCHIVE_ALL_TASKS': {
+      const { lists } = state;
+      const listId = action.payload;
+      const targetListIndex = findListIndexById(lists, listId);
+      const targetList = lists[targetListIndex];
+      const newTargetList = {
+        ...targetList,
+        tasks: []
+      };
+
+      return {
+        ...state,
+        lists: overrideListAtIndex(lists, newTargetList, targetListIndex)
+      };
+    }
+
+    case 'MOVE_ALL_TASKS_IN_THIS_LIST': {
+      const { lists } = state;
+      const listId = action.payload;
+      const targetListIndex = findListIndexById(lists, listId);
+      const targetList = lists[targetListIndex];
+      const tasksFromOtherLists = getTasksFromOtherLists(lists, listId);
+      const emptyLists = emptyAllOtherLists(lists, listId);
+
+      const newTargetList = {
+        ...targetList,
+        tasks: targetList.tasks.concat(tasksFromOtherLists)
+      };
+
+      return {
+        ...state,
+        lists: overrideListAtIndex(emptyLists, newTargetList, targetListIndex)
       };
     }
 

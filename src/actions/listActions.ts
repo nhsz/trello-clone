@@ -17,4 +17,12 @@ export type ListAction =
         dragIndex: number;
         hoverIndex: number;
       };
+    }
+  | {
+      type: 'ARCHIVE_ALL_TASKS';
+      payload: string;
+    }
+  | {
+      type: 'MOVE_ALL_TASKS_IN_THIS_LIST';
+      payload: string;
     };

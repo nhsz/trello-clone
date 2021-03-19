@@ -38,6 +38,17 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   const toggleMenu = () => setShowListActionsMenu(showListActionsMenu => !showListActionsMenu);
   const closeMenu = () => setShowListActionsMenu(false);
   const handleRemove = () => dispatch({ type: 'REMOVE_LIST', payload: id });
+  const addTask = (text: string) => dispatch({ type: 'ADD_TASK', payload: { id, text } });
+  // const addTaskFirst = (text: string) =>
+  //   dispatch({ type: 'ADD_TASK', payload: { id, text, addFirst: true } });
+  const moveAllTasksInThisList = () => {
+    dispatch({ type: 'MOVE_ALL_TASKS_IN_THIS_LIST', payload: id });
+    setShowListActionsMenu(false);
+  };
+  const archiveTasks = () => {
+    dispatch({ type: 'ARCHIVE_ALL_TASKS', payload: id });
+    setShowListActionsMenu(false);
+  };
   const handleEsc = (event: KeyboardEvent) => {
     if (event.key === 'Escape') setShowListActionsMenu(false);
   };
@@ -57,6 +68,8 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
           <ListActionsMenu
             isOpen={showListActionsMenu}
             handleClose={closeMenu}
+            handleArchiveAllTasks={archiveTasks}
+            handleMoveAllTasks={moveAllTasksInThisList}
             handleRemove={handleRemove}
           />
         )}
@@ -66,10 +79,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
           <Card id={task.id} index={i} text={task.text} listId={id} key={task.id} />
         ))}
       </ListCards>
-      <AddNewItem
-        itemType='card'
-        handleAdd={text => dispatch({ type: 'ADD_TASK', payload: { id, text } })}
-      />
+      <AddNewItem itemType='card' handleAdd={addTask} />
     </ListContainer>
   );
 };
