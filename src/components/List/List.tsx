@@ -36,7 +36,10 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
 
   drag(drop(ref));
 
-  const toggleMenu = () => setShowListActionsMenu(showListActionsMenu => !showListActionsMenu);
+  const toggleMenu = () => {
+    setMoveListMenu(false);
+    setShowListActionsMenu(showListActionsMenu => !showListActionsMenu);
+  };
   const closeListActionsMenu = () => setShowListActionsMenu(false);
   const closeMoveListMenu = () => setMoveListMenu(false);
   const goToMoveListMenu = () => {
@@ -70,7 +73,7 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
   };
 
   useEffect(() => {
-    // attach listener on component mount to detect clicks outside edit form area
+    // attach listener on component mount to detect ESC key down
     document.addEventListener('keydown', (handleEsc as unknown) as EventListener);
     // detach listener on component unmount
     return () => document.removeEventListener('keydown', (handleEsc as unknown) as EventListener);
