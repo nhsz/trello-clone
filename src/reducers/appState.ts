@@ -147,6 +147,19 @@ const appStateReducer: Reducer = (state, action) => {
       };
     }
 
+    case 'MOVE_LIST_TO_POSITION': {
+      const { lists } = state;
+      const { listId, index } = action.payload;
+      const targetListIndex = findListIndexById(lists, listId);
+      const targetList = lists[targetListIndex];
+      const updatedLists = removeItemAtIndex(lists, targetListIndex);
+
+      return {
+        ...state,
+        lists: insertItemAtIndex(updatedLists, targetList, index - 1)
+      };
+    }
+
     case 'ARCHIVE_ALL_TASKS': {
       const { lists } = state;
       const listId = action.payload;

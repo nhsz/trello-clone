@@ -59,7 +59,7 @@ const ListActionsMenu: FC<Props> = ({
           <button disabled>Copy list... [not implemented yet]</button>
         </DisabledItem>
         <ListActionsItem>
-          <button onClick={showMoveListMenu}>Move list... [WIP]</button>
+          <button onClick={showMoveListMenu}>Move list...</button>
         </ListActionsItem>
       </ListActionsUl>
 

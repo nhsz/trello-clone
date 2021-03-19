@@ -19,6 +19,13 @@ export type ListAction =
       };
     }
   | {
+      type: 'MOVE_LIST_TO_POSITION';
+      payload: {
+        listId: string;
+        index: number;
+      };
+    }
+  | {
       type: 'ARCHIVE_ALL_TASKS';
       payload: string;
     }
