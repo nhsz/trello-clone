@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   itemType: 'card' | 'list';
 }
 

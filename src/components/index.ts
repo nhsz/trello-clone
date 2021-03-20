@@ -1,3 +1,4 @@
+export * from './About';
 export * from './AddINewItem';
 export * from './App';
 export * from './Card';

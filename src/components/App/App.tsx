@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { AddNewItem, List } from '../../components';
+import { About, AddNewItem, List } from '../../components';
 import { useAppState } from '../../hooks';
 import { CustomDragLayer, Footer, Header } from '../UI';
 import { Board } from './App.styles';
@@ -15,7 +15,15 @@ const App: FC = () => {
   }, []);
 
   return (
-    <>
+    <div style={{ position: 'relative', overflowX: 'hidden' }}>
+      <About
+        avatarSrc='https://trello-members.s3.amazonaws.com/55eb06ffdff4c7bce8f97c2b/efceee66e68404b4d3ee01693d6457b4/50.png'
+        siteUrl='#'
+        ghProfile='https://github.com/nhsz/'
+        userHandle='@nhsz'
+        contactEmail='mailto:nh.quiroz@gmail.com'
+      />
+
       <Header logoSrc={documentIsReady ? './trello-logo.gif' : './trello-logo-loading.gif'} />
 
       <Board id='board'>
@@ -31,7 +39,7 @@ const App: FC = () => {
       </Board>
 
       <Footer siteUrl='https://twitter.com/_nhsz' repoUrl='https://github.com/nhsz/trello-clone' />
-    </>
+    </div>
   );
 };
 

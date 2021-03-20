@@ -23,22 +23,21 @@ const data: AppState = {
       id: nanoid(),
       title: 'To Do',
       tasks: [
-        { id: nanoid(), text: 'list actions menu: copy list, sort by' },
+        { id: nanoid(), text: 'list actions menu: sort by' },
         { id: nanoid(), text: 'list: edit title' },
         { id: nanoid(), text: 'localStorage: set/get' },
         { id: nanoid(), text: 'dark/light mode: add switch, `prefers-color-scheme`' },
         { id: nanoid(), text: 'css: fix bugs' },
-        { id: nanoid(), text: 'testing: add tests for reducer fns & utils' }
+        { id: nanoid(), text: 'testing: add tests for reducer fns & utils' },
+        { id: nanoid(), text: 'investigate: markdown support' }
       ]
     },
     {
       id: nanoid(),
       title: 'In Progress',
       tasks: [
-        {
-          id: nanoid(),
-          text: 'list actions menu: move list'
-        }
+        { id: nanoid(), text: 'show menu: button' },
+        { id: nanoid(), text: 'list actions menu: copy list' }
       ]
     },
     {
@@ -48,7 +47,7 @@ const data: AppState = {
         {
           id: nanoid(),
           text:
-            'list actions menu: archive all cards, move all cards to a list, archive list, add card'
+            'list actions menu: archive all cards, move all cards to a list, archive list, add card, move list'
         },
         { id: nanoid(), text: 'list: add, remove, move, ' },
         { id: nanoid(), text: 'task: add, edit, remove, move' }
