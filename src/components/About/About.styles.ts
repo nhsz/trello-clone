@@ -131,7 +131,8 @@ const DescriptionTextContainer = styled(PositionSelectorContainer)`
   color: #172b4d;
   font-size: 14px;
   line-height: 20px;
-  font-weight: 400;
+  transition: all 0.33s ease-in;
+  cursor: default;
 `;
 
 export {
