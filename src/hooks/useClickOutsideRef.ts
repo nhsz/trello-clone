@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 interface Params {
   mode: boolean;
-  setMode: () => void;
+  setMode: VoidFunction;
 }
 
 const useClickOutsideRef = ({ mode, setMode }: Params) => {
@@ -22,7 +22,7 @@ const useClickOutsideRef = ({ mode, setMode }: Params) => {
     document.addEventListener('click', clickOutsideListener);
     // detach listener on component unmount
     return () => document.removeEventListener('click', clickOutsideListener);
-  });
+  }, [clickOutsideListener]);
 
   return { ref, clickOutsideListener };
 };

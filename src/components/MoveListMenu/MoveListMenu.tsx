@@ -16,8 +16,8 @@ import {
 
 interface Props {
   isOpen: boolean;
-  handleClose: () => void;
-  handleGoBack: () => void;
+  handleClose: VoidFunction;
+  handleGoBack: VoidFunction;
   listId: string;
 }
 

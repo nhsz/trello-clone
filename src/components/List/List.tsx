@@ -1,4 +1,12 @@
-import { FC, KeyboardEvent, PropsWithChildren, useEffect, useRef, useState } from 'react';
+import {
+  FC,
+  KeyboardEvent,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { AddNewItem, Card, ListActionsMenu, MoveListMenu, NewItemForm } from '../../components';
 import { useAppState, useDragItem, useDropList } from '../../hooks';
@@ -68,30 +76,33 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
     setMoveListMenu(false);
     setShowListActionsMenu(true);
   };
-  const moveAllTasksInThisList = () => {
+  const handleMoveAllTasks = () => {
     dispatch({ type: 'MOVE_ALL_TASKS_IN_THIS_LIST', payload: id });
     setShowListActionsMenu(false);
   };
-  const archiveTasks = () => {
+  const handleArchiveAllTasks = () => {
     dispatch({ type: 'ARCHIVE_ALL_TASKS', payload: id });
     setShowListActionsMenu(false);
   };
-  const handleEsc = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      if (showListActionsMenu) setShowListActionsMenu(false);
-      if (showMoveListMenu) {
-        setMoveListMenu(false);
-        setShowListActionsMenu(true);
+  const handleEsc = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        if (showListActionsMenu) setShowListActionsMenu(false);
+        if (showMoveListMenu) {
+          setMoveListMenu(false);
+          setShowListActionsMenu(true);
+        }
       }
-    }
-  };
+    },
+    [showListActionsMenu, showMoveListMenu]
+  );
 
   useEffect(() => {
     // attach listener on component mount to detect ESC key down
     document.addEventListener('keydown', (handleEsc as unknown) as EventListener);
     // detach listener on component unmount
     return () => document.removeEventListener('keydown', (handleEsc as unknown) as EventListener);
-  });
+  }, [handleEsc]);
 
   return (
     <ListContainer
@@ -107,13 +118,13 @@ const List: FC<PropsWithChildren<Props>> = ({ id, title, index, isPreview }) => 
         {showListActionsMenu && (
           <ListActionsMenu
             isOpen={showListActionsMenu}
-            addFirst={addFirst}
             handleClose={closeListActionsMenu}
+            addFirst={addFirst}
             handleOpenFirst={handleOpenFirst}
-            handleArchiveAllTasks={archiveTasks}
-            handleMoveAllTasks={moveAllTasksInThisList}
+            handleArchiveAllTasks={handleArchiveAllTasks}
+            handleMoveAllTasks={handleMoveAllTasks}
             handleRemove={handleRemove}
-            showMoveListMenu={goToMoveListMenu}
+            goToMoveListMenu={goToMoveListMenu}
           />
         )}
         {showMoveListMenu && (

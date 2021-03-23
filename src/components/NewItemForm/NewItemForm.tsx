@@ -12,7 +12,7 @@ interface Props {
   itemType: 'card' | 'list';
   isOpen: boolean;
   handleAdd: (text: string) => void;
-  handleClose: () => void;
+  handleClose: VoidFunction;
 }
 
 const NewItemForm: FC<Props> = ({ itemType, isOpen, handleAdd, handleClose }) => {

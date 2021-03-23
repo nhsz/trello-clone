@@ -8,9 +8,10 @@ const App: FC = () => {
   const [documentIsReady, setDocumentIsReady] = useState(false);
   const { state, dispatch } = useAppState();
   const { lists } = state;
+  const documentHasLoaded = () => setDocumentIsReady(document.readyState === 'complete');
 
   useEffect(() => {
-    setTimeout(() => setDocumentIsReady(document.readyState === 'complete'), 1300);
+    setTimeout(documentHasLoaded, 1300);
     document?.getElementById('trello-logo')?.setAttribute('draggable', 'false');
   }, []);
 

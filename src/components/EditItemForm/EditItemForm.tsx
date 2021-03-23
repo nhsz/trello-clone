@@ -7,7 +7,7 @@ interface Props {
   itemType: 'card' | 'list';
   initialText: string;
   handleAdd: (text: string) => void;
-  handleClose: () => void;
+  handleClose: VoidFunction;
 }
 
 const EditItemForm: FC<Props> = ({ itemType, initialText, handleAdd, handleClose }) => {

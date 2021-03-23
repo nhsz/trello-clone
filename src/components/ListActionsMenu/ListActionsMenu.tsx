@@ -14,12 +14,12 @@ import {
 interface Props {
   isOpen: boolean;
   addFirst: boolean;
-  handleClose: () => void;
-  handleOpenFirst: () => void;
-  handleArchiveAllTasks: () => void;
-  handleMoveAllTasks: () => void;
-  handleRemove: () => void;
-  showMoveListMenu: () => void;
+  handleClose: VoidFunction;
+  handleOpenFirst: VoidFunction;
+  handleArchiveAllTasks: VoidFunction;
+  handleMoveAllTasks: VoidFunction;
+  handleRemove: VoidFunction;
+  goToMoveListMenu: VoidFunction;
 }
 
 const ListActionsMenu: FC<Props> = ({
@@ -30,7 +30,7 @@ const ListActionsMenu: FC<Props> = ({
   handleArchiveAllTasks,
   handleMoveAllTasks,
   handleRemove,
-  showMoveListMenu
+  goToMoveListMenu
 }) => {
   const { ref, clickOutsideListener } = useClickOutsideRef({
     mode: isOpen,
@@ -59,7 +59,7 @@ const ListActionsMenu: FC<Props> = ({
           <button disabled>Copy list... [not implemented yet]</button>
         </DisabledItem>
         <ListActionsItem>
-          <button onClick={showMoveListMenu}>Move list...</button>
+          <button onClick={goToMoveListMenu}>Move list...</button>
         </ListActionsItem>
       </ListActionsUl>
 
