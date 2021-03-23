@@ -6,9 +6,13 @@ import { Board } from './App.styles';
 
 const App: FC = () => {
   const [documentIsReady, setDocumentIsReady] = useState(false);
+  const [aboutIsOpen, setAboutIsOpen] = useState(false);
   const { state, dispatch } = useAppState();
   const { lists } = state;
   const documentHasLoaded = () => setDocumentIsReady(document.readyState === 'complete');
+
+  const handleOpen = () => setAboutIsOpen(true);
+  const handleClose = () => setAboutIsOpen(false);
 
   useEffect(() => {
     setTimeout(documentHasLoaded, 1300);
@@ -23,9 +27,14 @@ const App: FC = () => {
         ghProfile='https://github.com/nhsz/'
         userHandle='@nhsz'
         contactEmail='mailto:nh.quiroz@gmail.com'
+        isOpen={aboutIsOpen}
+        handleClose={handleClose}
       />
 
-      <Header logoSrc={documentIsReady ? './trello-logo.gif' : './trello-logo-loading.gif'} />
+      <Header
+        logoSrc={documentIsReady ? './trello-logo.gif' : './trello-logo-loading.gif'}
+        handleClick={handleOpen}
+      />
 
       <Board id='board'>
         <CustomDragLayer />

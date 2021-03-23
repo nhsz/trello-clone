@@ -1,9 +1,12 @@
-import { FC, useState } from 'react';
-import { HiOutlineUser, HiOutlineX } from 'react-icons/hi';
+import { FC } from 'react';
+import { HiOutlineMenuAlt2, HiOutlineUser, HiOutlineX } from 'react-icons/hi';
 import {
   Avatar,
   ContactInfo,
   Container,
+  Description,
+  DescriptionHeader,
+  DescriptionTextContainer,
   Divider,
   Header,
   Profile,
@@ -19,13 +22,19 @@ interface Props {
   ghProfile: string;
   userHandle: string;
   contactEmail: string;
+  isOpen: boolean;
+  handleClose: VoidFunction;
 }
 
-const About: FC<Props> = ({ avatarSrc, siteUrl, ghProfile, userHandle, contactEmail }) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleClose = () => setIsOpen(false);
-
+const About: FC<Props> = ({
+  avatarSrc,
+  siteUrl,
+  ghProfile,
+  userHandle,
+  contactEmail,
+  isOpen,
+  handleClose
+}) => {
   return (
     <Container isOpen={isOpen}>
       <Header>
@@ -62,6 +71,20 @@ const About: FC<Props> = ({ avatarSrc, siteUrl, ghProfile, userHandle, contactEm
           </ContactInfo>
         </UserInfo>
       </Profile>
+
+      <Description>
+        <DescriptionHeader>
+          <HiOutlineMenuAlt2 className='profile-icon' />
+          <p className='made-by-p'>Description</p>
+        </DescriptionHeader>
+        <DescriptionTextContainer>
+          <p>An attempt to mimic the UI and main features of Trello. </p>
+          <br />
+          <p>
+            Built with <strong>React</strong> & <strong>TypeScript</strong>.
+          </p>
+        </DescriptionTextContainer>
+      </Description>
     </Container>
   );
 };

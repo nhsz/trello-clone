@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ItemButtonContainer } from '../AddINewItem';
 import { ListActionsDivider, ListActionsHeader, ListActionsTitle } from '../ListActionsMenu';
+import { PositionSelectorContainer } from '../MoveListMenu';
 
 interface Props {
   isOpen: boolean;
@@ -44,7 +44,7 @@ const Profile = styled.section`
   padding: 12px 2px;
 
   .profile-icon {
-    color: #172b4d;
+    color: #42526e;
     font-size: 24px;
     height: 32px;
     line-height: 32px;
@@ -53,7 +53,7 @@ const Profile = styled.section`
 
   .made-by-p {
     color: #172b4d;
-    margin-left: 1rem;
+    margin-left: 14px;
     min-height: 18px;
     min-width: 40px;
     font-size: 16px;
@@ -65,7 +65,7 @@ const Profile = styled.section`
 const ProfileHeader = styled.section`
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 `;
 
 const UserInfo = styled.section`
@@ -120,10 +120,21 @@ const UserName = styled.h3`
 
 const Divider = styled(ListActionsDivider)``;
 
-const AboutButton = styled(ItemButtonContainer)``;
+const Description = styled(Profile)``;
+
+const DescriptionHeader = styled(ProfileHeader)`
+  margin-bottom: 4px;
+`;
+
+const DescriptionTextContainer = styled(PositionSelectorContainer)`
+  padding: 8px 12px;
+  color: #172b4d;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+`;
 
 export {
-  AboutButton,
   Container,
   Header,
   Title,
@@ -133,5 +144,8 @@ export {
   UserInfo,
   Avatar,
   ContactInfo,
-  UserName
+  UserName,
+  Description,
+  DescriptionHeader,
+  DescriptionTextContainer
 };

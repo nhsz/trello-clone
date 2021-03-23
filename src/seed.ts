@@ -35,15 +35,13 @@ const data: AppState = {
     {
       id: nanoid(),
       title: 'In Progress',
-      tasks: [
-        { id: nanoid(), text: 'show menu: button' },
-        { id: nanoid(), text: 'list actions menu: copy list' }
-      ]
+      tasks: [{ id: nanoid(), text: 'list actions menu: copy list' }]
     },
     {
       id: nanoid(),
       title: 'Done',
       tasks: [
+        { id: nanoid(), text: 'show about menu: button' },
         {
           id: nanoid(),
           text:
