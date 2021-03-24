@@ -1,5 +1,7 @@
 # Trello Clone
 
+![](https://i.imgur.com/5kG5Vvg.png)
+
 Check the [live demo](https://trello-clone-rts.vercel.app/).
 
 ## Stack
