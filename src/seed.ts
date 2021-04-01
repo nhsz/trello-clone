@@ -26,10 +26,8 @@ const data: AppState = {
         { id: nanoid(), text: 'list actions menu: sort by' },
         { id: nanoid(), text: 'list: edit title' },
         { id: nanoid(), text: 'localStorage: set/get' },
-        { id: nanoid(), text: 'dark/light mode: add switch, `prefers-color-scheme`' },
         { id: nanoid(), text: 'css: fix bugs' },
-        { id: nanoid(), text: 'testing: add tests for reducer fns & utils' },
-        { id: nanoid(), text: 'investigate: markdown support' }
+        { id: nanoid(), text: 'testing: add tests for reducer fns & utils' }
       ]
     },
     {
